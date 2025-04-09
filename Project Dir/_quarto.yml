@@ -16,14 +16,12 @@ book:
   repo-branch: master
   image: logo.png
 
-
-
-chapters: 
-- index.qmd
-- datacleaning.qmd
-- eda.qmd
-- dataviz.qmd
-- datadictionary.qmd
+  chapters: 
+    - index.qmd
+    - datacleaning.qmd
+    - eda.qmd
+    - dataviz.qmd
+    - datadictionary.qmd
 
 
 format:
