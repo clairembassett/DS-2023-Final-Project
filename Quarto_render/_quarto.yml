@@ -1,0 +1,32 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: 'DS 2023 Final Project'
+  author: 'peeps'
+  favicon: logo.png
+  description: Our final project for DS 2023 Communicating with Data
+  keyword: blah blah
+  #url: gitlink
+  sidebar:
+    logo: logo.png
+    search: true
+  #repo-url: repo link
+  repo-branch: master
+  image: logo.png
+
+  chapters: 
+    - index.qmd
+    - datacleaning.qmd
+    - eda.qmd
+    - dataviz.qmd
+    - datadictionary.qmd
+
+
+format:
+  html:
+    theme:
+      light: minty
+    code-fold: false
+    backgroundcolor: "#FFFFFF"
