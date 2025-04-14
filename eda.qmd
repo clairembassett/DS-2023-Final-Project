@@ -1,1 +1,24 @@
+# Final Project - EDA
+### Rebecca Vanni, Claire Bassett, Iliana Vasslides, Kayla Kim
 
+##### Question One - Define Your Audience / Stakeholder
+
+This report is made for the strength and training team for the men's basketball team at UVA. 
+Specifically made in mind for Mike Curtis, who is the head of strength and conditioning.
+
+##### Question Two - Define Your Problem Statement
+
+Injuries plague every athlete team, especially as the season progresses. How does a players total acceleration, player load, and jumps effect their effort throughout the season?
+As the the season progresses how does a players load transform between different uses of exertion?
+
+##### Question Three - Key Variables
+Independent variable: "Date" or the time during the season the game was played, will be seperated by season (not including the practice dates)
+Dependent Variables: These will be measuring the amount of effort or exertion in a game...
+including("total accerlation efforts", Total Player Load", "Player Load per Minute", "IMA Accel Total", "IMA Decel Total",
+"IMA Jump", and the "Explosive Efforts")
+
+We are also planning on studying how this varies by specific player throughout a season and by the average posistions.
+In order to fidn this we will use the "About" and "Position" columns. 
+```{python}
+
+```
