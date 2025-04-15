@@ -26,6 +26,7 @@ To clean the data, we are deleting unused columns, checking for missing values, 
 import pandas as pd 
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 ```
 
 ###### Load the data sets:
@@ -441,3 +442,23 @@ print(df1['Period'].unique())
 A couple things to note is that Warm Up experienced higher observations. Movement prep, while even with number of observations in Season 1, experienced significantly lower observations compared to Period 1 and Period 2 in Season 2. 
 
 - side note: remember that warm up is first and movement prep is last in Season 1, but this is the opposite in Season 2.
+
+##### Question Six - Examine Correlations (if relevant)
+```{python}
+sns.pairplot(df1[['Total Player Load', 'Player Load Per Minute', 'IMA Accel Total',
+       'IMA Decel Total', 'IMA Jump Count Low Band', 'IMA Jump Count Med Band',
+       'IMA Jump Count High Band', 'Explosive Efforts']], plot_kws={'alpha': 0.5})
+plt.show()
+```
+
+```{python}
+correlation = df1[['Total Player Load', 'Player Load Per Minute', 'IMA Accel Total',
+        'IMA Decel Total', 'IMA Jump Count Low Band', 'IMA Jump Count Med Band',
+        'IMA Jump Count High Band', 'Explosive Efforts']].corr()
+plt.figure(figsize=(10, 8))
+sns.heatmap(correlation, annot=True, cmap='coolwarm', center=0)
+plt.title('Correlation between 3 continuous chosen variables')
+plt.show()
+```
+
+##### Question Seven - Explore Relationships (if relevant)
