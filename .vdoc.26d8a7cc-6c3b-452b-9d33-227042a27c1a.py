@@ -1,49 +1,51 @@
-# Final Project - EDA
-
-### Rebecca Vanni, Claire Bassett, Iliana Vasslides, Kayla Kim
-
-##### Question One - Define Your Audience / Stakeholder
-
-This report is made for the strength and training team for the men's basketball team at UVA. Specifically made in mind for Mike Curtis, who is the head of strength and conditioning.
-
-##### Question Two - Define Your Problem Statement
-
-Injuries plague every athlete team, especially as the season progresses. How does a players total acceleration, player load, and jumps effect their effort throughout the season? As the the season progresses how does a players load transform between different uses of exertion?
-
-##### Question Three - Key Variables
-
-Independent variable: "Date" or the time during the season the game was played, will be seperated by season (not including the practice dates) Dependent Variables: These will be measuring the amount of effort or exertion in a game... including("total accerlation efforts", Total Player Load", "Player Load per Minute", "IMA Accel Total", "IMA Decel Total", "IMA Jump", and the "Explosive Efforts")
-
-We are also planning on studying how this varies by specific player throughout a season and by the average posistions. In order to find this we will use the "About" and "Position" columns.
-
-##### Question Four - Merge & Clean the Dataset
-
-To clean the data, we are deleting unused columns, checking for missing values, removing duplicates, and checking for correct data types.
-
-###### Import all necessary libraries:
-
-```{python}
+# type: ignore
+# flake8: noqa
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 import pandas as pd 
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-```
-
-###### Load the data sets:
-
-```{python}
+#
+#
+#
+#
+#
 #claire path
 df1 = pd.read_csv('Data/catapult season 1.csv')
 df2 = pd.read_csv('Data/catapult season 2.csv')
 #df1 = pd.read_csv("./season1.csv")
 #df2 = pd.read_csv("./season2.csv")
-```
-
-###### Delete unused columns:
-
-We only want to keep Date, About, Position, Period Number, Period, Total Player Load, Player Load Per Minute, IMA Accel Total, IMA Decel Total, IMA Jump Count Low Band, IMA Jump Count Med Band, IMA Jump Count High Band, and Explosive Efforts.
-
-```{python}
+#
+#
+#
+#
+#
+#
+#
 df1 = df1[['Date', 'About', 'Position', 'Period Number', 'Period', 'Total Player Load', 'Player Load Per Minute', 'IMA Accel Total', 
            'IMA Decel Total', 'IMA Jump Count Low Band', 'IMA Jump Count Med Band', 'IMA Jump Count High Band', 'Explosive Efforts']]
 
@@ -53,13 +55,13 @@ df2 = df2[['Date', 'About', 'Position', 'Period Number', 'Period', 'Total Player
 # make sure columns dropped properly
 print("df1:", df1.columns)
 print("df2:", df2.columns)
-```
-
-###### Check for Missing Data:
-
-We want to loop through each column and print out the percentage of missing values for each column.
-
-```{python}
+#
+#
+#
+#
+#
+#
+#
 print("Season1 Missings:")
 for col in df1.columns:
     total = len(df1)
@@ -73,21 +75,21 @@ for col in df2.columns:
     missing = df2[col].isnull().sum()
     percent = (missing / total) * 100
     print(col , ":", round(percent, 2))
-```
-
-###### Check for Duplicates/Correct Data Types in df1:
-
-We can use the .unique() and .value_counts() functions to check for duplicates that might be caused by spaces or change in data types.
-
-```{python}
+#
+#
+#
+#
+#
+#
+#
 # print(df1['Date'].unique() , "\n", df1['Date'].dtype) # -> all objects, no duplicates
 # print(df1['About'].unique() , "\n", df1['About'].dtype) # -> all objects, no duplicates
 print(df1['Position'].unique() , "\n", df1['Position'].dtype) # -> all objects, no duplicates
-```
-
-We only want to look at data for game-related observations, so we are only keeping rows where "Warm Up", "Period 1", "Period 2", and "Movement Prep" are the `Period` type.
-
-```{python}
+#
+#
+#
+#
+#
 # Warm Up, Period 1, Period 2, Mvmt Prep, Movement Prep
 krows = []
 
@@ -97,11 +99,11 @@ for i in range(len(df1)):
         krows.append(i)
 df1 = df1.loc[krows].reset_index(drop=True)
 df1['Period'] = df1['Period'].replace("Mvmt Prep", "Movement Prep")
-```
-
-Be more specific when dropping rows now, since some of the rows kept did include "Warm Up" or "Period 1", but were actually a Scrimmage Period 1 not a game. Same thing happened with some observations that were Drills with Warm Ups, etc.
-
-```{python}
+#
+#
+#
+#
+#
 # delete rows with "Scrimmage"
 drows = []
 
@@ -116,11 +118,11 @@ df1.drop(index=drows, inplace=True)
 df1.reset_index(drop=True, inplace=True)
 
 df1['Period'].value_counts()
-```
-
-To finish cleaning the `Period` column, we are going to make sure that there are no duplicates in this column. Since some of these duplicates had different period numbers, we have to make sure we change the period numbers to match as well.
-
-```{python}
+#
+#
+#
+#
+#
 # Warm Up = 1 , Period 1 = 2, Period 2 = 3, Movement Prep = 4
 # cleaning Warm Up
 if "1. Warm Up" in df1['Period'].values:
@@ -166,11 +168,11 @@ else:
     df1['Period'] = df1['Period']
 
 print(df1['Period'].value_counts())
-```
-
-Continuing to check the columns:
-
-```{python}
+#
+#
+#
+#
+#
 # # print(df1['Total Player Load'].value_counts(), "\n", df1['Total Player Load'].dtype) # -> all floats
 # # print(df1['Player Load Per Minute'].unique(), "\n", df1['Player Load Per Minute'].dtype) # -> all floats w/ one decimal place
 # # print(df1['IMA Accel Total'].unique(), "\n", df1['IMA Accel Total'].dtype) # -> all ints, no duplicates
@@ -179,21 +181,21 @@ Continuing to check the columns:
 # print(df1['IMA Jump Count Med Band'].unique(), "\n", df1['IMA Jump Count Med Band'].dtype) # -> all ints, no duplicates
 # print(df1['IMA Jump Count High Band'].unique(), "\n", df1['IMA Jump Count High Band'].dtype) # -> all ints, no duplicates
 print(df1['Explosive Efforts'].unique(), "\n", df1['Explosive Efforts'].dtype) # -> all ints, no duplicates
-```
-
-###### Check for Duplicates/Correct Data Types in df2:
-
-Once again, we can use the .unique() and .value_counts() functions to check for duplicates that might be caused by spaces or change in data types.
-
-```{python}
+#
+#
+#
+#
+#
+#
+#
 # print(df2['Date'].unique() , "\n", df2['Date'].dtype) # -> all objects, no duplicates
 # print(df2['About'].unique() , "\n", df2['About'].dtype) # -> all objects, no duplicates
 print(df2['Position'].unique() , "\n", df2['Position'].dtype) # -> all objects, no duplicates
-```
-
-We only want to look at data for game-related observations, so we are only keeping rows where "Warm Up", "Period 1", "Period 2", and "Movement Prep" are the `Period` type.
-
-```{python}
+#
+#
+#
+#
+#
 # Warm Up, Period 1, Period 2, Mvmt Prep, Movement Prep
 krows = []
 
@@ -203,11 +205,11 @@ for i in range(len(df2)):
         krows.append(i)
 df2 = df2.loc[krows].reset_index(drop=True)
 df2['Period'] = df2['Period'].replace("Mvmt Prep", "Movement Prep")
-```
-
-Be more specific when dropping rows now, since some of the rows kept did include "Warm Up" or "Period 1", but were actually a Scrimmage Period 1 not a game. Same thing happened with some observations that were Drills with Warm Ups, etc.
-
-```{python}
+#
+#
+#
+#
+#
 # delete rows with "Scrimmage"
 drows = []
 
@@ -222,11 +224,11 @@ df2.drop(index=drows, inplace=True)
 df2.reset_index(drop=True, inplace=True)
 
 df2['Period'].value_counts()
-```
-
-To finish cleaning the `Period` column, we are going to make sure that there are no duplicates in this column. Since some of these duplicates had different period numbers, we have to make sure we change the period numbers to match as well. To finish cleaning the `Period` column, we are going to make sure that there are no duplicates in this column. Since some of these duplicates had different period numbers, we have to make sure we change the period numbers to match as well.
-
-```{python}
+#
+#
+#
+#
+#
 # Warm Up = 1 , Period 1 = 2, Period 2 = 3, Movement Prep = 4
 # cleaning Warm Up
 if "1. Warm Up" in df2['Period'].values:
@@ -279,11 +281,11 @@ else:
     df2['Period'] = df2['Period']
 
 print(df2['Period'].value_counts())
-```
-
-Continuing to check the columns:
-
-```{python}
+#
+#
+#
+#
+#
 # print(df2['Total Player Load'].value_counts(), "\n", df2['Total Player Load'].dtype) # -> all floats
 # print(df2['Player Load Per Minute'].unique(), "\n", df2['Player Load Per Minute'].dtype) # -> all floats w/ one decimal place
 # print(df2['IMA Accel Total'].unique(), "\n", df2['IMA Accel Total'].dtype) # -> all ints, no duplicates
@@ -292,11 +294,11 @@ Continuing to check the columns:
 # print(df2['IMA Jump Count Med Band'].unique(), "\n", df2['IMA Jump Count Med Band'].dtype) # -> all ints, no duplicates
 # print(df2['IMA Jump Count High Band'].unique(), "\n", df2['IMA Jump Count High Band'].dtype) # -> all ints, no duplicates
 print(df2['Explosive Efforts'].unique(), "\n", df2['Explosive Efforts'].dtype) # -> all ints, no duplicates
-```
-
-##### Question Five - Descriptive Statistics & Distributions
-
-```{python}
+#
+#
+#
+#
+#
 def hist_stat(col, seasondf):
     # season/column specific:
     color = ''
@@ -347,107 +349,107 @@ def categorical_stats(col, dataframe):
     title = season + " " + col.name
     plt.title(title)
     plt.show()
-```
-
-###### Total Player Load:
-```{python}
+#
+#
+#
+#
 hist_stat(df1['Total Player Load'], df1)
 hist_stat(df2['Total Player Load'], df2)
-```
-
-From the 2 seasons worth of Total Player Load distributions and statistics, it appears:
-1. There's a slight positive skew (right skewed) with a high peak towards lower values (less than 50)
-2. A smaller peak towards 150 to 175
-3. A gradual decline after 200 all the way to 400+ in Total Player Load
-4. Percentiles also display this with the 25, 50, 75 percentiles for both seasons
-5. season 1 saw a higher initial peak at near 200 for a low point whereas season 2 saw the highest frequency around 175 for the initial peak.
-
-Since distribution was similar, but the initial peaks were different, we might want to look more into why total player loads see this unusual distribution.
-
-###### Player Load Per Minute:
-```{python}
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 hist_stat(df1['Player Load Per Minute'], df1)
 hist_stat(df2['Player Load Per Minute'], df2)
-```
-
-Compared to Total Player Load, the Player Load Per Minute attains a relatively normal and symmetrical distribution. This indicates that players more see an "average" Player load every minute between 5 to around 12.5 player load / minute whereas total player load varies greatly between players in certain warmup/game groups.
-
-###### IMA Accel Total:
-```{python}
+#
+#
+#
+#
+#
+#
 hist_stat(df1['IMA Accel Total'], df1)
 hist_stat(df2['IMA Accel Total'], df2)
-```
-
-###### IMA Decel Total:
-```{python}
+#
+#
+#
+#
 hist_stat(df1['IMA Decel Total'], df1)
 hist_stat(df2['IMA Decel Total'], df2)
-```
-
-The IMA Accel Total Distribution is more positively/right skewed compared to that of the IMA Decel Total when we compare the respective season graphs along with the percentile breakdowns. The reason this is might not be because most players don't accelerate or decelerate that often, but more so because there are minor movements contributing to minor slowing down or minor speeding up. For example, a player could walk forward one step, and this would be seen as an acceleration.
-
-Another thing to point out in IMA Decel Total is that basketball players also back pedal during games/warm-ups, and Catapult sensors might have a hard time understanding that facing one direction while accelerating in the opposite is possible. So in IMA Decel Total, we might see a second small peak around 30 for both because the sensors think the person is deccelerating when they're accelerating in a back pedal.
-
-###### IMA Jump Count Low Band:
-```{python}
+#
+#
+#
+#
+#
+#
+#
+#
 hist_stat(df1['IMA Jump Count Low Band'], df1)
 hist_stat(df2['IMA Jump Count Low Band'], df2)
-```
-
-###### IMA Jump Count Med Band:
-```{python}
+#
+#
+#
+#
 hist_stat(df1['IMA Jump Count Med Band'], df1)
 hist_stat(df2['IMA Jump Count Med Band'], df2)
-```
-
-###### IMA Jump Count High Band:
-```{python}
+#
+#
+#
+#
 hist_stat(df1['IMA Jump Count High Band'], df1)
 hist_stat(df2['IMA Jump Count High Band'], df2)
-```
-
-Overall, all of the IMA Jump Counts (low/med/high), experienced a right skew. It appears we have a higher amount of lower bands as the maximums were much higher (67 and 70 for season 1 and 2 respectively) compared to that of low and high bands. 
-
-This means there are some extreme outliers/observations that can contribute to analysis. For example, we might be able to look into which players induced these extreme outlier observations and then examine if there's something different in their training regime that we can add to other player regimes.
-
-Another reasoning for this positive skew is that players often observe a lack of low/med/high counts in terms of bands compared to experiencing these bands. We might need to take a look at the higher counts for each band to take a look at what's different about these types of events (warm-up/game) compared to that of the lower counted bands.
-
-###### Explosive Efforts:
-```{python}
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 hist_stat(df1['Explosive Efforts'], df1)
 hist_stat(df2['Explosive Efforts'], df2)
-```
-
-In Explosive efforts, it appears we have yet another positively skewed distribution. In Season 1, we see a lower frequency for the minimum (0) compared to that of Season 2. Otherwise, the shape of the rest of the distribution remains relatively similar.
-
-Why this is might be because there were more times players didn't experience any explosive efforts compared to experiencing them. We might want to take a look at the wins/losses of games in both seasons to see if there was more success in one of the season, and see if this correlates with how many non-explosive efforts both seasons observed. There might be a correlation, but as of now we're not sure what the correlation might be.
-
-###### Categorical Statistics:
-
-Position:
-```{python}
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 categorical_stats(df1['Position'], df1)
 categorical_stats(df2['Position'], df2)
 
 print(df1['Position'].unique())
-```
-
-Consistently, we see more observations under Guard than in Forward and in Center (ordered in descending order). This might indicate that warmups/movement prep/game periods witnessed more guards activity than that of the other positions. We might be able to explore how this impacts the guards during gamedays/warmups, and if we should be focusing attentions on the other positions in this manner.
-
-Period:
-```{python}
+#
+#
+#
+#
+#
+#
 categorical_stats(df1['Period'], df1)
 categorical_stats(df2['Period'], df2)
 
 print(df1['Period'].unique())
-```
-
-A couple things to note is that Warm Up experienced higher observations. Movement prep, while even with number of observations in Season 1, experienced significantly lower observations compared to Period 1 and Period 2 in Season 2. 
-
-- side note: remember that warm up is first and movement prep is last in Season 1, but this is the opposite in Season 2.
-
-##### Question Six - Examine Correlations (if relevant)
-```{python}
+#
+#
+#
+#
+#
+#
+#
+#
 sns.pairplot(df1[['Total Player Load', 'Player Load Per Minute', 'IMA Accel Total',
        'IMA Decel Total', 'IMA Jump Count Low Band', 'IMA Jump Count Med Band',
        'IMA Jump Count High Band', 'Explosive Efforts']], plot_kws={'alpha': 0.5})
@@ -459,17 +461,17 @@ plt.figure(figsize=(10, 8))
 sns.heatmap(correlation, annot=True, cmap='coolwarm', center=0)
 plt.title('Correlation between 3 continuous chosen variables')
 plt.show()
-```
-
-Correlations above 0.75:
-- IMA Accel Total and Total Player Load(0.86)
-- IMA Decel Total and Total Player Load(0.84)
-- Explosive Efforts and Total Player Load(0.77)
-- IMA Accel Total and IMA Decel Total(0.75)
-- Explosive Effots and IMA Accel Total(0.84)
-- Explosive Efforts and IMA Decel Total(0.76)
-
-```{python}
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 sns.pairplot(df2[['Total Player Load', 'Player Load Per Minute', 'IMA Accel Total',
        'IMA Decel Total', 'IMA Jump Count Low Band', 'IMA Jump Count Med Band',
        'IMA Jump Count High Band', 'Explosive Efforts']], plot_kws={'alpha': 0.5})
@@ -481,32 +483,33 @@ plt.figure(figsize=(10, 8))
 sns.heatmap(correlation, annot=True, cmap='coolwarm', center=0)
 plt.title('Correlation between 3 continuous chosen variables')
 plt.show()
-```
-
- Correlations above 0.75:
- - IMA Accel Total and Total Player Load(0.82)
- - IMA Decel Total and Total Player Load(0.9)
- - Explosive Efforts and Total Player Load(0.79)
- - IMA Decel Total and IMA Accel Total(0.75)
- - Explosive Efforts and IMA Accel Total(0.84)
- - Explosive Efforts and IMA Decel Total(0.84)
-
- Negative Correlations:
- - IMA Jump Count Med Band and Player Load per Minute(-0.41)
- - IMA Jump Count High Band and Player Load per Minute(-0.064)
- - IMA Accel Total and IMA Jump Count Med Band(-0.014)
- - IMA Jump Count Low Band and IMA Jump Count Med Band(-0.054)
- - Explosive Efforts and IMA Jump Count Med Band(-0.19)
-
- I thought these negative correlations were an interesting factor because they were not seen in the first seasons data set.
-
-##### Question Seven - Explore Relationships (if relevant)
-
-Looking at Correlations above 0.75
-
-Relationship between IMA Accel Total and Total Player Load
-
-```{python}
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 fig, axes = plt.subplots(1, 2, figsize=(12, 5))
 
 sns.scatterplot(data=df1, x='IMA Accel Total', y='Total Player Load', ax=axes[0], color='blue')
@@ -521,13 +524,13 @@ axes[1].set_ylabel('Total Player Load')
 
 plt.tight_layout()
 plt.show()
-```
-
-Both relationships seem to be positive and strongly correlated.
-
-Relationship between IMA Decel Total and Total Player Load
-
-```{python}
+#
+#
+#
+#
+#
+#
+#
 fig, axes = plt.subplots(1, 2, figsize=(12, 5))
 
 sns.scatterplot(data=df1, x='IMA Decel Total', y='Total Player Load', ax=axes[0], color='blue')
@@ -542,12 +545,12 @@ axes[1].set_ylabel('Total Player Load')
 
 plt.tight_layout()
 plt.show()
-```
-
-Both relationships are highly correlated and seem to have small differences in their trends.
-
-Relationship between Explosive Efforts and Total Player Load
-```{python}
+#
+#
+#
+#
+#
+#
 fig, axes = plt.subplots(1, 2, figsize=(12, 5))
 
 sns.scatterplot(data=df1, x='Explosive Efforts', y='Total Player Load', ax=axes[0], color='blue')
@@ -562,12 +565,10 @@ axes[1].set_ylabel('Total Player Load')
 
 plt.tight_layout()
 plt.show()
-```
-
-Both relationships are highly correlated and seem to have small differences in their trends.
-
-Relationship between IMA Decel Total and IMA Accel Total
-```{python}
+#
+#
+#
+#
 fig, axes = plt.subplots(1, 2, figsize=(12, 5))
 
 sns.scatterplot(data=df1, x='IMA Decel Total', y='IMA Accel Total', ax=axes[0], color='blue')
@@ -581,11 +582,10 @@ axes[1].set_xlabel('IMA Decel Total')
 axes[1].set_ylabel('IMA Accel Total')
 plt.tight_layout()
 plt.show()
-```
-Both relationships are moderate to strongly correlated and seem to have few differences in their trends.
-
-Relationship between IMA Accel Total and Explosive Efforts
-```{python}
+#
+#
+#
+#
 fig, axes = plt.subplots(1, 2, figsize=(12, 5))
 
 sns.scatterplot(data=df1, x='IMA Accel Total', y='Explosive Efforts', ax=axes[0], color='blue')
@@ -600,12 +600,10 @@ axes[1].set_ylabel('Explosive Efforts')
 
 plt.tight_layout()
 plt.show()
-```
-
-These correlations are both positive and moderate-highly correlated. Their trends occur to be different with the season 2 data to have a higher trend line.
-
-Relationship between IMA Decel Total and Explosive Efforts
-```{python}
+#
+#
+#
+#
 fig, axes = plt.subplots(1, 2, figsize=(12, 5))
 
 sns.scatterplot(data=df1, x='IMA Decel Total', y='Explosive Efforts', ax=axes[0], color='blue')
@@ -620,22 +618,22 @@ axes[1].set_ylabel('Explosive Efforts')
 
 plt.tight_layout()
 plt.show()
-```
-
-Both the comparisons of IMA Decel and IMA Accel Totals compared to Explosive Efforts are very similar. The trends both show the same shape and correlations.
-
-Looking at negative correlations:
- - IMA Jump Count Med Band and Player Load per Minute(-0.41)
- - IMA Jump Count High Band and Player Load per Minute(-0.064)
- - IMA Accel Total and IMA Jump Count Med Band(-0.014)
- - IMA Jump Count Low Band and IMA Jump Count Med Band(-0.054)
- - Explosive Efforts and IMA Jump Count Med Band(-0.19)
-
- ```{python}
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 fig, axes = plt.subplots(1, 2, figsize=(12, 5))
 
 sns.scatterplot(data=df1, x='IMA Jump Count Med Band', y='Player Load Per Minute', ax=axes[0], color='blue')
-axes[0].set_title('Season 2 Jump Count Med Band vs Player Load per Minute')
+axes[0].set_title('Season 1 Jump Count High Band vs Player Load')
 axes[0].set_xlabel('IMA Jump Count Med Band')
 axes[0].set_ylabel('Player Load per Minute')
 
@@ -646,13 +644,13 @@ axes[1].set_ylabel('Player Load Per Minute')
 
 plt.tight_layout()
 plt.show()
-```
-
-These correlations appear to not be overwhelmingly negative but rather just scattered in similar ways with a slight negative skew for the season 2 data. We will not be exploring the lower correlated sets its clear that the negative value is not fully important for the relationships with such small correlations.
-
-Exploring the Negative Correlation(0.19) between IMA Jump Count Med Band and Explosive Efforts
-
- ```{python}
+#
+#
+#
+#
+#
+#
+#
 fig, axes = plt.subplots(1, 2, figsize=(12, 5))
 
 sns.scatterplot(data=df1, x='IMA Jump Count Med Band', y='Explosive Efforts', ax=axes[0], color='blue')
@@ -668,40 +666,6 @@ axes[1].set_ylabel('Explosive Efforts')
 plt.tight_layout()
 plt.show()
 ```
-
-The correlation between IMA Jump Count Med Band and Explosive Efforts is different for both the season 1 data(0.076) and the season 2 data(-0.19). This raises the question of a potential different play style, or energy exertion during the games. 
-
-Statistical Analyses of IMA Jump Count Med Band and Explosive Efforts
- ```{python}
-df3= pd.DataFrame({
-    'IMA Jump Count Med Band': pd.concat([df1['IMA Jump Count Med Band'], df2['IMA Jump Count Med Band']], ignore_index=True),
-    'Season': ['Season 1'] * len(df1) + ['Season 2'] * len(df2)
-})
-
-plt.figure(figsize=(8, 6))
-sns.boxplot(data=df3, x='Season', y='IMA Jump Count Med Band', palette='spring')
-
-plt.ylabel('IMA Jump Count Med Band')
-plt.title('IMA Jump Count Med Band: Season 1 vs Season 2')
-plt.grid(axis='y')
-plt.show()
- ```
-
-It appears that the season 1 data has a larger spread then compared to season 2. Though, the IQR is larger in the season 2 data, meaning the values have more variability in this middle range. The mean of the seasn 2 data is also slightly larger then the season 1 data.
-
- ```{python}
-df3= pd.DataFrame({
-    'Explosive Efforts': pd.concat([df1['Explosive Efforts'], df2['Explosive Efforts']], ignore_index=True),
-    'Season': ['Season 1'] * len(df1) + ['Season 2'] * len(df2)
-})
-
-plt.figure(figsize=(8, 6))
-sns.boxplot(data=df3, x='Season', y='Explosive Efforts', palette='spring')
-
-plt.ylabel('Explosive Efforts')
-plt.title('Explosive Efforts: Season 1 vs Season 2')
-plt.grid(axis='y')
-plt.show()
- ```
-
- The spread of explosive efforts is larger in the season 1 data, but the IQR is significantly larger in the season 2 data. This means that the data has more variability in the mid range of explosive efforts. The mean is also larger in the season 2 data, meaning players in season 1 had fewer explosive efforts.
+#
+#
+#
