@@ -3,18 +3,18 @@ title: "Untitled"
 format: html
 ---
 
-## Cleaning the Dataset
-```
+# Cleaning the Dataset
+```{python}
 # importing libraries
 import pandas as pd 
 
 # loading the data set
-# df1 = pd.read_csv("./season1.csv")
-# df2 = pd.read_csv("./season2.csv")
+df1 = pd.read_csv("./season1.csv")
+df2 = pd.read_csv("./season2.csv")
 ``` 
 
 ### Check for Missing Data
-```
+```{python}
 # looking for missing values in the columns 
 # loop through each column and print the percentage of missing values of each column
 print("Season1 Missings:")
@@ -30,4 +30,176 @@ for col in df2.columns:
     missing = df2[col].isnull().sum()
     percent = (missing / total) * 100
     print(col , ":", round(percent, 2))
+```
+
+### Check for Duplicated/Correct Data Types in df1
+```{python}
+# using .unique() to check for duplicates because of spaces/wrong data types/etc
+# print(df1['Date'].unique() , "\n", df1['Date'].dtype) # -> all objects, no duplicates
+# print(df1['About'].unique() , "\n", df1['About'].dtype) # -> all objects, no duplicates
+print(df1['Position'].unique() , "\n", df1['Position'].dtype) # -> all objects, no duplicates
+```
+
+We only want to look at data for game-related observations, so we are only keeping rows where "Period 1" and "Period 2" are the `Period` type.
+
+```{python}
+# Period 1, Period 2
+krows = []
+
+for i in range(len(df1)):
+    value = str(df1.loc[i, 'Period'])
+    if 'Period 1' in value or 'Period 2' in value:
+        krows.append(i)
+df1 = df1.loc[krows].reset_index(drop=True)
+```
+
+Be more specific when dropping rows now, since some of the rows kept did include "Period 1", but were actually a Scrimmage Period 1 not a game
+
+```{python}
+# delete rows with "Scrimmage"
+drows = []
+
+for i in range(len(df1)):
+    value = str(df1.loc[i, 'Period'])
+    if 'Scrimmage' in value:
+        drows.append(i)
+    if 'Drill' in value:
+        drows.append(i)
+
+df1.drop(index=drows, inplace=True)
+df1.reset_index(drop=True, inplace=True)
+
+df1['Period'].value_counts()
+```
+
+To finish cleaning the `Period` column, we are going to make sure that there are no duplicates in this column. Since some of these duplicates had different period numbers, we have to make sure we change the period numbers to match as well.
+
+```{python}
+# Period 1 = 1, Period 2 = 2
+
+# cleaning Period 1
+if "2. Period 1" in df1['Period'].values:
+    df1['Period'] = df1['Period'].replace("2. Period 1", "Period 1")
+    df1['Period Number'] = df1['Period Number'].replace(2, 1)
+if "3. Period 1" in df1['Period'].values:
+    df1['Period'] = df1['Period'].replace("3. Period 1", "Period 1")
+    df1['Period Number'] =df1['Period Number'].replace(3, 1)
+
+# cleaning Period 2
+if "2. Period 2" in df1['Period'].values:
+    df1['Period'] = df1['Period'].replace("2. Period 2", "Period 2")
+if "4. Period 2" in df1['Period'].values:
+    df1['Period'] = df1['Period'].replace("4. Period 2", "Period 2")
+    df1['Period Number'] = df1['Period Number'].replace(4, 2)
+if "3. Period 2" in df1['Period'].values:
+    df1['Period'] = df1['Period'].replace("3. Period 2", "Period 2")
+    df1['Period Number'] = df1['Period Number'].replace(4, 2)
+
+print(df1['Period'].value_counts())
+```
+
+Continuing to check the columns:
+
+```{python}
+# # print(df1['Total Player Load'].value_counts(), "\n", df1['Total Player Load'].dtype) # -> all floats
+# # print(df1['Player Load Per Minute'].unique(), "\n", df1['Player Load Per Minute'].dtype) # -> all floats w/ one decimal place
+# # print(df1['IMA Accel Total'].unique(), "\n", df1['IMA Accel Total'].dtype) # -> all ints, no duplicates
+# # print(df1['IMA Decel Total'].unique(), "\n", df1['IMA Decel Total'].dtype) # -> all ints, no duplicates 
+# print(df1['IMA Jump Count Low Band'].unique(), "\n", df1['IMA Jump Count Low Band'].dtype) # -> all ints, no duplicates
+# print(df1['IMA Jump Count Med Band'].unique(), "\n", df1['IMA Jump Count Med Band'].dtype) # -> all ints, no duplicates
+# print(df1['IMA Jump Count High Band'].unique(), "\n", df1['IMA Jump Count High Band'].dtype) # -> all ints, no duplicates
+print(df1['Explosive Efforts'].unique(), "\n", df1['Explosive Efforts'].dtype) # -> all ints, no duplicates
+```
+
+
+### Check for Duplicates/Correct Data Types in df2:
+Once again, we can use the .unique() and .value_counts() functions to check for duplicates that might be caused by spaces or change in data types.
+
+```{python}
+# print(df2['Date'].unique() , "\n", df2['Date'].dtype) # -> all objects, no duplicates
+# print(df2['About'].unique() , "\n", df2['About'].dtype) # -> all objects, no duplicates
+print(df2['Position'].unique() , "\n", df2['Position'].dtype) # -> all objects, no duplicates
+```
+
+We only want to look at data for game-related observations, so we are only keeping rows where "Period 1" and "Period 2" are the `Period` type.
+```{python}
+# Period 1, Period 2
+krows = []
+
+for i in range(len(df2)):
+    value = str(df2.loc[i, 'Period'])
+    if 'Period 1' in value or 'Period 2' in value:
+        krows.append(i)
+df2 = df2.loc[krows].reset_index(drop=True)
+```
+
+Be more specific when dropping rows now, since some of the rows kept did include "Period 1", but were actually a Scrimmage Period 1 not a game. 
+
+```{python}
+# delete rows with "Scrimmage"
+drows = []
+
+for i in range(len(df2)):
+    value = str(df2.loc[i, 'Period'])
+    if 'Scrimmage' in value:
+        drows.append(i)
+    if 'Drill' in value:
+        drows.append(i)
+
+df2.drop(index=drows, inplace=True)
+df2.reset_index(drop=True, inplace=True)
+
+df2['Period'].value_counts()
+```
+
+To finish cleaning the `Period` column, we are going to make sure that there are no duplicates in this column. Since some of these duplicates had different period numbers, we have to make sure we change the period numbers to match as well. To finish cleaning the `Period` column, we are going to make sure that there are no duplicates in this column. Since some of these duplicates had different period numbers, we have to make sure we change the period numbers to match as well.
+```{python}
+# Period 1 = 1, Period 2 = 2
+
+# cleaning Period 1
+if "2. Period 1" in df2['Period'].values:
+    df2['Period'] = df2['Period'].replace("2. Period 1", "Period 1")
+    df2['Period Number'] =df2['Period Number'].replace(3, 1)
+if "3. Period 1" in df2['Period'].values:
+    df2['Period'] = df2['Period'].replace("3. Period 1", "Period 1")
+    df2['Period Number'] =df2['Period Number'].replace(3, 1)
+if "1. Period 1" in df2['Period'].values:
+    df2['Period'] = df2['Period'].replace("1. Period 1", "Period 1")
+if "8. Period 1" in df2['Period'].values:
+    df2['Period'] = df2['Period'].replace("8. Period 1", "Period 1")
+    df2['Period Number'] =df2['Period Number'].replace(8, 1)
+
+# cleaning Period 2
+if "2. Period 2" in df2['Period'].values:
+    df2['Period'] = df2['Period'].replace("2. Period 2", "Period 2")
+if "4. Period 2" in df2['Period'].values:
+    df2['Period'] = df2['Period'].replace("4. Period 2", "Period 2")
+    df2['Period Number'] = df2['Period Number'].replace(4, 2)
+if "3. Period 2" in df2['Period'].values:
+    df2['Period'] = df2['Period'].replace("3. Period 2", "Period 2")
+    df2['Period Number'] = df2['Period Number'].replace(3, 2)
+if "5. Period 2" in df2['Period'].values:
+    df2['Period'] = df2['Period'].replace("5. Period 2", "Period 2")
+    df2['Period Number'] = df2['Period Number'].replace(5, 2)
+if "9. Period 2" in df2['Period'].values:
+    df2['Period'] = df2['Period'].replace("9. Period 2", "Period 2")
+    df2['Period Number'] = df2['Period Number'].replace(9, 2)
+
+else:
+    df2['Period'] = df2['Period']
+
+print(df2['Period'].value_counts())
+```
+
+Continuing to check the columns:
+
+```{python}
+# print(df2['Total Player Load'].value_counts(), "\n", df2['Total Player Load'].dtype) # -> all floats
+# print(df2['Player Load Per Minute'].unique(), "\n", df2['Player Load Per Minute'].dtype) # -> all floats w/ one decimal place
+# print(df2['IMA Accel Total'].unique(), "\n", df2['IMA Accel Total'].dtype) # -> all ints, no duplicates
+# print(df2['IMA Decel Total'].unique(), "\n", df2['IMA Decel Total'].dtype) # -> all ints, no duplicates 
+# print(df2['IMA Jump Count Low Band'].unique(), "\n", df2['IMA Jump Count Low Band'].dtype) # -> all ints, no duplicates
+# print(df2['IMA Jump Count Med Band'].unique(), "\n", df2['IMA Jump Count Med Band'].dtype) # -> all ints, no duplicates
+# print(df2['IMA Jump Count High Band'].unique(), "\n", df2['IMA Jump Count High Band'].dtype) # -> all ints, no duplicates
+print(df2['Explosive Efforts'].unique(), "\n", df2['Explosive Efforts'].dtype) # -> all ints, no duplicates
 ```
