@@ -33,10 +33,10 @@ import seaborn as sns
 
 ```{python}
 #claire path
-df1 = pd.read_csv('Data/catapult season 1.csv')
-df2 = pd.read_csv('Data/catapult season 2.csv')
-#df1 = pd.read_csv("./season1.csv")
-#df2 = pd.read_csv("./season2.csv")
+# df1 = pd.read_csv('Data/catapult season 1.csv')
+# df2 = pd.read_csv('Data/catapult season 2.csv')
+df1 = pd.read_csv("./season1.csv")
+df2 = pd.read_csv("./season2.csv")
 ```
 
 ###### Delete unused columns:
