@@ -4,8 +4,30 @@ format: html
 ---
 
 ## Cleaning the Dataset
+```
 # importing libraries
 import pandas as pd 
 
+# loading the data set
+# df1 = pd.read_csv("./season1.csv")
+# df2 = pd.read_csv("./season2.csv")
+``` 
 
+### Check for Missing Data
+```
+# looking for missing values in the columns 
+# loop through each column and print the percentage of missing values of each column
+print("Season1 Missings:")
+for col in df1.columns:
+    total = len(df1)
+    missing = df1[col].isnull().sum()
+    percent = (missing / total) * 100
+    print(col , ":", round(percent, 2))
 
+print("\nSeason2 Missings:")
+for col in df2.columns:
+    total = len(df2)
+    missing = df2[col].isnull().sum()
+    percent = (missing / total) * 100
+    print(col , ":", round(percent, 2))
+```
