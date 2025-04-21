@@ -13,6 +13,20 @@ df1 = pd.read_csv("./season1.csv")
 df2 = pd.read_csv("./season2.csv")
 ``` 
 
+
+### Deleting unused columns
+```{python}
+df1 = df1[['Date', 'About', 'Position', 'Period', 'Total Player Load', 'Player Load Per Minute', 'IMA Accel Total', 
+           'IMA Decel Total', 'IMA Jump Count Low Band', 'IMA Jump Count Med Band', 'IMA Jump Count High Band', 'Explosive Efforts']]
+
+df2 = df2[['Date', 'About', 'Position', 'Period', 'Total Player Load', 'Player Load Per Minute', 'IMA Accel Total', 
+           'IMA Decel Total', 'IMA Jump Count Low Band', 'IMA Jump Count Med Band', 'IMA Jump Count High Band', 'Explosive Efforts']]
+
+# make sure columns dropped properly
+print("df1:", df1.columns)
+print("df2:", df2.columns)
+```
+
 ### Check for Missing Data
 ```{python}
 # looking for missing values in the columns 
@@ -80,20 +94,16 @@ To finish cleaning the `Period` column, we are going to make sure that there are
 # cleaning Period 1
 if "2. Period 1" in df1['Period'].values:
     df1['Period'] = df1['Period'].replace("2. Period 1", "Period 1")
-    df1['Period Number'] = df1['Period Number'].replace(2, 1)
 if "3. Period 1" in df1['Period'].values:
     df1['Period'] = df1['Period'].replace("3. Period 1", "Period 1")
-    df1['Period Number'] =df1['Period Number'].replace(3, 1)
 
 # cleaning Period 2
 if "2. Period 2" in df1['Period'].values:
     df1['Period'] = df1['Period'].replace("2. Period 2", "Period 2")
 if "4. Period 2" in df1['Period'].values:
     df1['Period'] = df1['Period'].replace("4. Period 2", "Period 2")
-    df1['Period Number'] = df1['Period Number'].replace(4, 2)
 if "3. Period 2" in df1['Period'].values:
     df1['Period'] = df1['Period'].replace("3. Period 2", "Period 2")
-    df1['Period Number'] = df1['Period Number'].replace(4, 2)
 
 print(df1['Period'].value_counts())
 ```
@@ -159,31 +169,24 @@ To finish cleaning the `Period` column, we are going to make sure that there are
 # cleaning Period 1
 if "2. Period 1" in df2['Period'].values:
     df2['Period'] = df2['Period'].replace("2. Period 1", "Period 1")
-    df2['Period Number'] =df2['Period Number'].replace(3, 1)
 if "3. Period 1" in df2['Period'].values:
     df2['Period'] = df2['Period'].replace("3. Period 1", "Period 1")
-    df2['Period Number'] =df2['Period Number'].replace(3, 1)
 if "1. Period 1" in df2['Period'].values:
     df2['Period'] = df2['Period'].replace("1. Period 1", "Period 1")
 if "8. Period 1" in df2['Period'].values:
     df2['Period'] = df2['Period'].replace("8. Period 1", "Period 1")
-    df2['Period Number'] =df2['Period Number'].replace(8, 1)
 
 # cleaning Period 2
 if "2. Period 2" in df2['Period'].values:
     df2['Period'] = df2['Period'].replace("2. Period 2", "Period 2")
 if "4. Period 2" in df2['Period'].values:
     df2['Period'] = df2['Period'].replace("4. Period 2", "Period 2")
-    df2['Period Number'] = df2['Period Number'].replace(4, 2)
 if "3. Period 2" in df2['Period'].values:
     df2['Period'] = df2['Period'].replace("3. Period 2", "Period 2")
-    df2['Period Number'] = df2['Period Number'].replace(3, 2)
 if "5. Period 2" in df2['Period'].values:
     df2['Period'] = df2['Period'].replace("5. Period 2", "Period 2")
-    df2['Period Number'] = df2['Period Number'].replace(5, 2)
 if "9. Period 2" in df2['Period'].values:
     df2['Period'] = df2['Period'].replace("9. Period 2", "Period 2")
-    df2['Period Number'] = df2['Period Number'].replace(9, 2)
 
 else:
     df2['Period'] = df2['Period']
