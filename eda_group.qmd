@@ -1,3 +1,9 @@
+---
+format:
+  html:
+    self-contained: true
+---
+
 # Final Project - EDA
 
 ### Rebecca Vanni, Claire Bassett, Iliana Vasslides, Kayla Kim
@@ -26,6 +32,7 @@ To clean the data, we are deleting unused columns, checking for missing values, 
 import pandas as pd 
 import numpy as np
 import matplotlib.pyplot as plt
+%matplotlib inline
 import seaborn as sns
 ```
 
