@@ -54,6 +54,14 @@ for col in df2.columns:
 print(df1['Position'].unique() , "\n", df1['Position'].dtype) # -> all objects, no duplicates
 ```
 
+We see that there is one player whose name is not in the correct format of 'Athlete ..', so we will replace his name with 'Athlete K' per instructions.
+
+``` {python}
+df1['About'] = df1['About'].replace('Ben Vander Plas', 'Athlete K')
+df1['About'].unique()
+
+``` 
+
 We only want to look at data for game-related observations, so we are only keeping rows where "Period 1" and "Period 2" are the `Period` type.
 
 ```{python}
@@ -67,7 +75,7 @@ for i in range(len(df1)):
 df1 = df1.loc[krows].reset_index(drop=True)
 ```
 
-Be more specific when dropping rows now, since some of the rows kept did include "Period 1", but were actually a Scrimmage Period 1 not a game
+Be more specific when dropping rows now, since some of the rows kept did include "Period 1", but were actually a Scrimmage Period 1, not a game.
 
 ```{python}
 # delete rows with "Scrimmage"
@@ -86,7 +94,7 @@ df1.reset_index(drop=True, inplace=True)
 df1['Period'].value_counts()
 ```
 
-To finish cleaning the `Period` column, we are going to make sure that there are no duplicates in this column. Since some of these duplicates had different period numbers, we have to make sure we change the period numbers to match as well.
+To finish cleaning the `Period` column, we are going to make sure that there are no duplicates in this column. Since some of these duplicates included a period number in the `Period` value, we will remove them to make them all merge into only two unique values.
 
 ```{python}
 # Period 1 = 1, Period 2 = 2
@@ -162,7 +170,7 @@ df2.reset_index(drop=True, inplace=True)
 df2['Period'].value_counts()
 ```
 
-To finish cleaning the `Period` column, we are going to make sure that there are no duplicates in this column. Since some of these duplicates had different period numbers, we have to make sure we change the period numbers to match as well. To finish cleaning the `Period` column, we are going to make sure that there are no duplicates in this column. Since some of these duplicates had different period numbers, we have to make sure we change the period numbers to match as well.
+To finish cleaning the `Period` column, we are going to make sure that there are no duplicates in this column. Since some of these duplicates included a period number in the `Period` value, we will remove them to make them all merge into only two unique values. 
 ```{python}
 # Period 1 = 1, Period 2 = 2
 
@@ -206,3 +214,11 @@ Continuing to check the columns:
 # print(df2['IMA Jump Count High Band'].unique(), "\n", df2['IMA Jump Count High Band'].dtype) # -> all ints, no duplicates
 print(df2['Explosive Efforts'].unique(), "\n", df2['Explosive Efforts'].dtype) # -> all ints, no duplicates
 ```
+
+
+For future use, like making our graphs and other analysis, we want to save the cleaned data sets as new csv files. 
+
+```{python}
+df1.to_csv("./season1_cleaned.csv", index=False)
+df2.to_csv("./season2_cleaned.csv", index=False)
+``` 
