@@ -1,0 +1,75 @@
+---
+title: "DataViz"
+format: html
+jupyter: python3
+---
+
+# Graph 1: Looking at the Percentages of Total Player Load separate by position, for each period
+
+```{python}
+# Importing libraries
+import pandas as pd 
+import matplotlib.pyplot as plt
+
+# Loading in cleaned data set 
+df1 = pd.read_csv("./season1_cleaned.csv")
+``` 
+
+To get the data ready for our pie charts, we need to separate the one dataframe by `Period` to make new two dataframes: p1 and p2. For the two new dataframes, we wil use the `groupby` method to group the data by `Position` and then find the average of the `Total Player Load` for each position. 
+```{python}
+# Separate df1 into dataframes for period 1 and for period 2
+p1 = df1[df1['Period'] == 'Period 1'].copy().reset_index(drop=True)
+p2 = df1[df1['Period'] == 'Period 2'].copy().reset_index(drop=True)
+
+# Take average of `Total Player Load` by `Position` for each period dataframe
+# Grouping by `Position`, then taking the mean of `Total Player Load`, then resetting the index 
+p1_avg = p1.groupby(['Position'])['Total Player Load'].mean().reset_index()
+p2_avg = p2.groupby(['Position'])['Total Player Load'].mean().reset_index()
+
+# Print dataframes
+print(p1_avg,"\n")
+print(p2_avg)
+``` 
+
+
+Now3 that we have the averages, we will divide each position's `Total Player Load` by the sum of all positions' `Total Player Load` to get the percentage. This percentage will be stored in a new column, `Proportion`. 
+```{python}
+# Add a new column, Proportion, for each position's TPL for each period 
+p1_avg['Proportion'] = p1_avg['Total Player Load'] / p1_avg['Total Player Load'].sum()
+p2_avg['Proportion'] = p2_avg['Total Player Load'] / p2_avg['Total Player Load'].sum()
+
+# Print dataframes w/ new column
+print(p1_avg, "\n")
+print(p2_avg)
+``` 
+
+To plot our donut charts, we will use the `plot.pie` method. Using subplots, we can create two donut charts side by side to demonstrate the percentages of `Total Player Load` for each position in each period. 
+```{python}
+# Make color dict for positions
+colors = {'Guard': '#E57200', 'Forward': '#232D4B', 'Center': '#C8CBD2'}
+
+# Make subplots, 1 row and 2 columns 
+fig, ax = plt.subplots(1, 2, figsize=(9, 5))
+
+# Graphing Period 1 as ax[0], aka first subplot 
+# the wedgeprops argument is used to give the hole in the center, the autopct argument is used to display the percentages, the pctdistance argument is used to change the distance of the percentage text
+# the textprops argument is used to change the font color and size, the startangle argument is used to rotate the chart, and the colors argument is used to change the colors of the wedges based on the position
+ax[0].pie(p1_avg['Proportion'], labels=None, wedgeprops=dict(width=0.5), autopct='%1.1f%%', pctdistance=0.7, textprops={'color': 'white', 'fontsize': '12'}, startangle=90, colors=[colors[pos] for pos in p1_avg['Position']])
+# the annotate argument is used to add text to the center of the donut chart
+ax[0].annotate('Period 1', xy=(0, 0), fontsize=15, ha='center')
+
+# Graphing Period 2 as ax[1], aka the second subplot
+# the arguments are the same as above, but with data from p2_avg 
+ax[1].pie(p2_avg['Proportion'], labels=None, wedgeprops=dict(width=0.5), autopct='%1.1f%%', pctdistance=0.7, textprops={'color': 'white', 'fontsize': '12'}, startangle=90, colors=[colors[pos] for pos in p2_avg['Position']])
+ax[1].annotate('Period 2', xy=(0, 0), fontsize=15, ha='center')
+
+# Adding a title 
+fig.suptitle('Guards Contribute A Higher Proportion of the Total Player Load', fontsize=18)
+
+# Adding a legend, and setting the location, font size, and position 
+fig.legend(p1_avg['Position'], loc='center', bbox_to_anchor=(0.5, 0.8), title='Position', fontsize=12)
+
+# Making a tight layout and displaying the plot
+plt.tight_layout()
+plt.show()
+```
