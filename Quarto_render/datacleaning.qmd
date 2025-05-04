@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "Data Cleaning"
 format: html
 ---
 
@@ -7,6 +7,9 @@ format: html
 ```{python}
 # importing libraries
 import pandas as pd 
+
+# adding gitignore 
+# .gitignore
 
 # loading the data set
 df1 = pd.read_csv("./season1.csv")
