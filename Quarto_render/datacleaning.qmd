@@ -4,7 +4,7 @@ format: html
 jupyter: python3
 ---
 
-# Cleaning the Dataset
+## Loading the Dataset
 ```{python}
 # importing libraries
 import pandas as pd 
@@ -18,7 +18,7 @@ df2 = pd.read_csv("./season2.csv")
 ``` 
 
 
-### Deleting unused columns
+## Deleting unused columns
 ```{python}
 df1 = df1[['Date', 'About', 'Position', 'Period', 'Total Player Load', 'Player Load Per Minute', 'IMA Accel Total', 
            'IMA Decel Total', 'IMA Jump Count Low Band', 'IMA Jump Count Med Band', 'IMA Jump Count High Band', 'Explosive Efforts']]
@@ -31,7 +31,7 @@ print("df1:", df1.columns)
 print("df2:", df2.columns)
 ```
 
-### Check for Missing Data
+## Check for Missing Data
 ```{python}
 # looking for missing values in the columns 
 # loop through each column and print the percentage of missing values of each column
@@ -50,7 +50,7 @@ for col in df2.columns:
     print(col , ":", round(percent, 2))
 ```
 
-### Check for Duplicated/Correct Data Types in df1
+## Check for Duplicated/Correct Data Types in df1
 ```{python}
 # using .unique() to check for duplicates because of spaces/wrong data types/etc
 # print(df1['Date'].unique() , "\n", df1['Date'].dtype) # -> all objects, no duplicates
@@ -134,7 +134,7 @@ print(df1['Explosive Efforts'].unique(), "\n", df1['Explosive Efforts'].dtype) #
 ```
 
 
-### Check for Duplicates/Correct Data Types in df2:
+## Check for Duplicates/Correct Data Types in df2:
 Once again, we can use the .unique() and .value_counts() functions to check for duplicates that might be caused by spaces or change in data types.
 
 ```{python}
