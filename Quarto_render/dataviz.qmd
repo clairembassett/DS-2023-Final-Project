@@ -4,12 +4,13 @@ format: html
 jupyter: python3
 ---
 
-# Graph 1: Looking at the Percentages of Total Player Load separate by position, for each period
+## Graph 1: Looking at the Percentages of Total Player Load separate by position, for each period
 
 ```{python}
 # Importing libraries
 import pandas as pd 
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 # Loading in cleaned data set 
 df1 = pd.read_csv("./season1_cleaned.csv")
@@ -74,7 +75,8 @@ plt.tight_layout()
 plt.show()
 ```
 
-# Graph 2: Looking at Explosive efforts, ima accel/decels, and ima jump band counts (med, high, low)
+## Graph 2: Looking at different Contributors to Player Load for a specific athlete.
+In this STACKED AREA GRAPH, `Explosive efforts`, `IMA Accel/Decel`, and `IMA Jump Band` (Med, High, Low) were observed as contributors to `Total Player Load`. The data will be filtered for that of Athlete H in column `About`. Here, the 
 
 ```{python}
 # Importing libraries for graph 2
@@ -97,11 +99,13 @@ df1_copy = df1_copy[df1_copy['About'] == 'Athlete H']
 
 The three variables that will be looked at are the ones in the season1 dataset that relate to total player load. For this purpose, 3 variables will be chosen/combined in a meaningful way for the graph. Here they are:
 
-1. **IATS_IDTS_pct** = `IMA Accel Total` and `IMA Decel Total` averaged
-2. **Jumps_pct** = `IMA Jump Count Low Band`, `IMA Jump Count Med Band`, `IMA Jump Count High Band` averaged
-3. **EES_pct** =`Explosive Efforts`
+1. **`IATS_IDTS_pct`** = `IMA Accel Total` and `IMA Decel Total` averaged
+2. **`Jumps_pct`** = `IMA Jump Count Low Band`, `IMA Jump Count Med Band`, `IMA Jump Count High Band` averaged
+3. **`EES_pct`** =`Explosive Efforts`
 
 To find the proportions, all 3 main variables will be divided by the `Total Player Load` at the matching dates.
+
+The next code block will find the proportion that each value takes of total player load.
 ```{python}
 # Avg_IATS_IDTS_By_Date is the average of the IMA Accel/Decel total. Having both independently on the graph causes busy-ness
 # They're similar in correlation to total player load (found through EDA)
@@ -124,49 +128,66 @@ df1_copy['Jumps_pct'] = df1_copy['Avg_ijclb_ijcmb_ijchb_By_Date'] / df1_copy['To
 df1_copy['EES_pct'] = df1_copy['Explosive Efforts'] / df1_copy['Total Player Load']
 ```
 
+The code will group the 3 new columns by the `Date` they were recorded and averaged for graphical purposes. In addition, colors will be mapped to each column along with sorting the game dates in order for visual clarity purposes.
 ```{python}
+# Take the mean of the `IATS_IDTS_pct`, `EES`, and `Jumps_pct` according to the specific game date
 avg_df = df1_copy.groupby('Date')[[ 'IATS_IDTS_pct', 'EES_pct', 'Jumps_pct']].mean().reset_index()
 avg_df.columns = ['Date',  'IATS_IDTS', 'EES', 'Jumps']
 
+# Colors mapped to each of the 3 variables for the graph
 col_map = {
-    'IATS_IDTS': '#232D4B',
-    'EES': '#E57200',
-    'Jumps': '#D3D3D3'
+    'IATS_IDTS': '#232D4B',  # UVA blue - `IATS_IDTS_pct`
+    'EES': '#E57200',  # UVA orange - `EES`
+    'Jumps': '#D3D3D3'  # gray - `Jumps_pct`
 }
 
-
+# Sort game dates in order (first game on November 7 to last game on March 14) - aids in graphs that look continuous and not chaotic (unexplainable visuals can happen in the graph without this line btw)
 avg_df = avg_df.sort_values('Date')
-x = range(len(avg_df))
+```
 
+The actual plot: This next part creates a STACKED AREA GRAPH of all 3 variables, starting with `IATS_IDTS`, followed by `EES` and `Jumps`. Coincidentally, this is the order highest to lowest of which variable "contributes" to the `Total Player Load`.
+```{python}
+# Creating "wide" graph to account for many dates across the season
 plt.figure(figsize=(10, 5))
 
+# Actual graphing - STACKED AREA GRAPH of:
+# X-Axis: Game Dates under `Date`
+# Y-Axis: Cumulative proportion of each variable: `IATS_IDTS`, `EES`, and `Jumps` (mapped to their colors)
 plt.stackplot(
     avg_df['Date'],
     avg_df['IATS_IDTS'],
     avg_df['EES'],
     avg_df['Jumps'],
-    colors=['#232D4B', '#E57200', '#D3D3D3'],
-    alpha=1
+    colors=list(col_map.values()),  # Use color map from earlier
+    alpha=1  # make all colors solid, nothing less
 )
 
-
+# Remove axes (lines become distracting if not to the human eye)
 plt.gca().spines['top'].set_visible(False)
 plt.gca().spines['right'].set_visible(False)
 plt.gca().spines['left'].set_visible(False)
 plt.gca().spines['bottom'].set_visible(False)
+
+# Take away the little horizontal tick lines beside the y-axis values
 plt.tick_params(axis='y', length=0)
 
-handles = [
+
+########################################################################################################################################################################
+# This next section is optional. Currently, none of the code contributes to the current graph due to the current graph not using a legend. Instead, we put the variables by color in the title. You may uncomment the legend block below to use, however.
+handles = [  # Matches colors as they are shown top-bottom in the graph itself into the legend's top-down order
     Patch(facecolor='#D3D3D3'),  # Top layer in graph (Jumps)
     Patch(facecolor='#E57200'),  # Middle layer (EES)
     Patch(facecolor='#232D4B'),  # Bottom layer (IATS_IDTS)
 ]
+# Labels for the variables in the legend (see below legend code comments for what things to do with the legend and this list)
 labels = [
     'IMA Jump Band Counts',
     'Explosive Efforts',
     'IMA Accels & Decels'
 ]
 
+# One can use a legend to list the colors from the map to each variable, but we've labeled them in the title.
+# Uncomment out if you'd like the legend instead of the title color indicators
 # plt.legend(
 #     handles=handles,
 #     labels=labels,
@@ -175,31 +196,42 @@ labels = [
 #     frameon=False,
 #     fontsize=8
 # )
+########################################################################################################################################################################
 
+
+# The next codeblock inserts the X-axis label, Y-axis label, and title (with inserted words in respective color to act as the legend).
+
+# To replace the legend: place the variable English names of:
+# - IMA Acceleration/Deceleration: `IATS_IDTS`
+# - Explosive Efforts: `EES`
+# - IMA Jump Bands: `Jumps`
+# into the title (more code below)
 plt.text(0.45, 1.243, 'IMA Acceleration/Deceleration', transform=plt.gca().transAxes, fontsize=13, color='#000080')
 plt.text(0.097, 1.175, 'Explosive Efforts', transform=plt.gca().transAxes, fontsize=13, color='#E57200')
 plt.text(0.308, 1.175, 'IMA Jump Bands', transform=plt.gca().transAxes, fontsize=13, color='#adadad')
 
-
-
-# plt.ylabel("Cumulative Proportions of Total Player Load")
+# X-axis, Y-axis, and title labels coded in that order:
 plt.xlabel('Game Dates')
 plt.text(-0.009, 1.04, "(Cumulative Proportions of Total Player Load)", transform=plt.gca().transAxes)
 plt.title("Total Player Load Contributors in Season 1 Games:                                                       contributes the most,\nfollowed by                               and                ", x=-0.01, y=1.15, loc='left')
 
+
+# There are some issues with displaying the X-axis dates, so we formatted them as "month day", with an example below. Then we start the dates at Nov 7 until Mar 14 without putting Nov 1 or Mar 15 as the start and end X-axis numbers. Now we have the whole graph!
+# X-axis logistics: formatting dates by "month day", ex: "Nov 15"
 plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval=1)) 
 plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%b %d'))
 plt.gca().xaxis.set_major_locator(mdates.AutoDateLocator())
 
+# don't want floating dates before or after the first game date or last game date. 
+# Just limit to what is the first and last game date (Nov 7 to Mar 14, but don't list these)
 plt.xlim(avg_df['Date'].min(), avg_df['Date'].max())
 
-# plt.legend()
+# Finally: Show the whole graph!
 plt.tight_layout()
-
 plt.show()
 ```
 
-# Graph 3: Looking at Cumulative Player Load over the course of the season by positon, highlighting player H.
+## Graph 3: Looking at Cumulative Player Load over the course of the season by positon, highlighting player H.
 
 This graph works to show how player load progressives over the season, with guards(especially Athlete H) dominating cumulative player load during the season.
 

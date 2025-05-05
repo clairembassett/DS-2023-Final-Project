@@ -28,8 +28,8 @@ import seaborn as sns
 
 ### Load the cleaned data sets:
 ```{python}
-df1 = pd.read_csv("./../season1_cleaned.csv")
-df2 = pd.read_csv("./../season2_cleaned.csv")
+df1 = pd.read_csv("./season1_cleaned.csv")
+df2 = pd.read_csv("./season2_cleaned.csv")
 ```
 
 ### Creating Functions for Plotting and Printing Stats
@@ -454,7 +454,7 @@ df3= pd.DataFrame({
 
 plt.figure(figsize=(8, 6))
 # Creating boxplot to compare IMA Jump Count Med Band across seasons 
-sns.boxplot(data=df3, x='Season', y='IMA Jump Count Med Band', hue='Season' palette='spring')
+sns.boxplot(data=df3, x='Season', y='IMA Jump Count Med Band', hue='Season', palette='spring')
 # Adding title and axis labels 
 plt.ylabel('IMA Jump Count Med Band')
 plt.title('IMA Jump Count Med Band: Season 1 vs Season 2')

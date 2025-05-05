@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -147,8 +182,25 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#define-your-audience-stakeholder" id="toc-define-your-audience-stakeholder" class="nav-link active" data-scroll-target="#define-your-audience-stakeholder"><span class="header-section-number">3.1</span> Define Your Audience / Stakeholder</a></li>
+  <li><a href="#define-your-problem-statement" id="toc-define-your-problem-statement" class="nav-link" data-scroll-target="#define-your-problem-statement"><span class="header-section-number">3.2</span> Define Your Problem Statement</a></li>
+  <li><a href="#key-variables" id="toc-key-variables" class="nav-link" data-scroll-target="#key-variables"><span class="header-section-number">3.3</span> Key Variables</a></li>
+  <li><a href="#descriptive-statistics-distributions" id="toc-descriptive-statistics-distributions" class="nav-link" data-scroll-target="#descriptive-statistics-distributions"><span class="header-section-number">3.4</span> Descriptive Statistics &amp; Distributions</a>
+  <ul class="collapse">
+  <li><a href="#import-all-necessary-libraries" id="toc-import-all-necessary-libraries" class="nav-link" data-scroll-target="#import-all-necessary-libraries"><span class="header-section-number">3.4.1</span> Import all necessary libraries:</a></li>
+  <li><a href="#load-the-cleaned-data-sets" id="toc-load-the-cleaned-data-sets" class="nav-link" data-scroll-target="#load-the-cleaned-data-sets"><span class="header-section-number">3.4.2</span> Load the cleaned data sets:</a></li>
+  <li><a href="#creating-functions-for-plotting-and-printing-stats" id="toc-creating-functions-for-plotting-and-printing-stats" class="nav-link" data-scroll-target="#creating-functions-for-plotting-and-printing-stats"><span class="header-section-number">3.4.3</span> Creating Functions for Plotting and Printing Stats</a></li>
+  <li><a href="#examine-correlations" id="toc-examine-correlations" class="nav-link" data-scroll-target="#examine-correlations"><span class="header-section-number">3.4.4</span> Examine Correlations</a></li>
+  <li><a href="#explore-relationships" id="toc-explore-relationships" class="nav-link" data-scroll-target="#explore-relationships"><span class="header-section-number">3.4.5</span> Explore Relationships</a></li>
+  <li><a href="#looking-at-negative-correlations" id="toc-looking-at-negative-correlations" class="nav-link" data-scroll-target="#looking-at-negative-correlations"><span class="header-section-number">3.4.6</span> Looking at negative correlations:</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -172,8 +224,827 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="define-your-audience-stakeholder" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="define-your-audience-stakeholder"><span class="header-section-number">3.1</span> Define Your Audience / Stakeholder</h2>
+<p>This report is made for the strength and training team for the men’s basketball team at UVA. Specifically made in mind for Mike Curtis, who is the head of strength and conditioning.</p>
+</section>
+<section id="define-your-problem-statement" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="define-your-problem-statement"><span class="header-section-number">3.2</span> Define Your Problem Statement</h2>
+<p>Injuries plague every athlete team, especially as the season progresses. How does a player’s position dictate their PlayerLoad and therefore their likelihood of injury?</p>
+</section>
+<section id="key-variables" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="key-variables"><span class="header-section-number">3.3</span> Key Variables</h2>
+<p>Independent variable: “Date” or the time during the season the game was played, will be separated by season (not including the practice dates) Dependent Variables: These will be measuring the amount of effort or exertion in a game, such as <code>Total Acceleration Efforts</code>, <code>Total Player Load</code>, <code>Player Load per Minute</code>, <code>IMA Accel Total</code>, <code>IMA Decel Total</code>, <code>IMA Jump</code>, and the <code>Explosive Efforts</code>.</p>
+<p>We are also planning on studying how this varies by specific player throughout a season and by the average positions. In order to find this we will use the <code>About</code>, <code>Date</code>, and <code>Position</code> columns.</p>
+</section>
+<section id="descriptive-statistics-distributions" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="descriptive-statistics-distributions"><span class="header-section-number">3.4</span> Descriptive Statistics &amp; Distributions</h2>
+<section id="import-all-necessary-libraries" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="import-all-necessary-libraries"><span class="header-section-number">3.4.1</span> Import all necessary libraries:</h3>
+<div id="a7860209" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="load-the-cleaned-data-sets" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="load-the-cleaned-data-sets"><span class="header-section-number">3.4.2</span> Load the cleaned data sets:</h3>
+<div id="157a61c9" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> pd.read_csv(<span class="st">"./season1_cleaned.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> pd.read_csv(<span class="st">"./season2_cleaned.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="creating-functions-for-plotting-and-printing-stats" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="creating-functions-for-plotting-and-printing-stats"><span class="header-section-number">3.4.3</span> Creating Functions for Plotting and Printing Stats</h3>
+<div id="3725056a" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to create a histogram for numerical columns</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hist_stat(col, seasondf):</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># season/column specific:</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    color <span class="op">=</span> <span class="st">''</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    season <span class="op">=</span> <span class="st">''</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># if season 1, make it purple</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> seasondf.equals(df1):</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        season <span class="op">=</span> <span class="st">'Season 1'</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        color <span class="op">=</span> <span class="st">'purple'</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># if season 2, make it green</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> seasondf.equals(df2):</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        season <span class="op">=</span> <span class="st">'Season 2'</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        color <span class="op">=</span> <span class="st">'green'</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        season <span class="op">=</span> <span class="st">'Unknown Season'</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        color <span class="op">=</span> <span class="st">'blue'</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot the histogram</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    plt.hist(col, bins<span class="op">=</span><span class="dv">30</span>, color<span class="op">=</span>color, alpha<span class="op">=</span><span class="fl">0.5</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Remove spines</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    plt.gca().spines[<span class="st">'top'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    plt.gca().spines[<span class="st">'right'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add title</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> season <span class="op">+</span> <span class="st">" "</span> <span class="op">+</span> col.name <span class="op">+</span> <span class="st">" "</span> <span class="op">+</span> <span class="st">'Distribution'</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    plt.title(title)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add xlabel</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(col.name)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Print numerical statistics, such as mean, standard deviation, minimum, maximum, and percentiles </span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    mean <span class="op">=</span> np.mean(col)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    std <span class="op">=</span> np.std(col)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">min</span> <span class="op">=</span> np.<span class="bu">min</span>(col)</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="bu">max</span> <span class="op">=</span> np.<span class="bu">max</span>(col)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    percentiles <span class="op">=</span> np.percentile(col, [<span class="dv">25</span>, <span class="dv">50</span>, <span class="dv">75</span>])</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"mean:"</span>, mean, <span class="st">"</span><span class="ch">\n</span><span class="st">std:"</span>, std, <span class="st">"</span><span class="ch">\n</span><span class="st">min:"</span>, <span class="bu">min</span>, <span class="st">"</span><span class="ch">\n</span><span class="st">max:"</span>, <span class="bu">max</span>, <span class="st">"</span><span class="ch">\n</span><span class="st">Percentiles:"</span>, percentiles)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to create a histogram for categorical columns</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> categorical_stats(col, dataframe):</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    color <span class="op">=</span> <span class="st">''</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    season <span class="op">=</span> <span class="st">''</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># if season 1, make it purple</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> dataframe.equals(df1):</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>        season <span class="op">=</span> <span class="st">'Season 1'</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>        color <span class="op">=</span> <span class="st">'purple'</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    <span class="co"># if season 2, make it green</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> dataframe.equals(df2):</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>        season <span class="op">=</span> <span class="st">'Season 2'</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>        color <span class="op">=</span> <span class="st">'green'</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>        season <span class="op">=</span> <span class="st">'Unknown Season'</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>        color <span class="op">=</span> <span class="st">'blue'</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot the histogram</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>    plt.hist(col, color<span class="op">=</span>color, edgecolor<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Remove spines</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>    plt.gca().spines[<span class="st">'top'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>    plt.gca().spines[<span class="st">'right'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add title</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> season <span class="op">+</span> <span class="st">" "</span> <span class="op">+</span> col.name</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>    plt.title(title)</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="total-player-load-graphs" class="level4" data-number="3.4.3.1">
+<h4 data-number="3.4.3.1" class="anchored" data-anchor-id="total-player-load-graphs"><span class="header-section-number">3.4.3.1</span> <code>Total Player Load</code> Graphs:</h4>
+<div id="1bc03433" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>hist_stat(df1[<span class="st">'Total Player Load'</span>], df1)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>hist_stat(df2[<span class="st">'Total Player Load'</span>], df2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-5-output-1.png" width="566" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>mean: 241.77308759124088 
+std: 105.40557579091106 
+min: 0.155 
+max: 494.021 
+Percentiles: [167.444   256.8645  320.69175]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-5-output-3.png" width="566" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>mean: 190.69367781155015 
+std: 87.44444716531845 
+min: 0.251 
+max: 430.681 
+Percentiles: [115.1855  188.7165  262.91825]</code></pre>
+</div>
+</div>
+<p>From the 2 seasons worth of Total Player Load distributions and statistics, it appears: 1. There’s a slight positive skew (right skewed) with a high peak towards lower values (less than 50) 2. A smaller peak towards 150 to 175 3. A gradual decline after 200 all the way to 400+ in Total Player Load 4. Percentiles also display this with the 25, 50, 75 percentiles for both seasons 5. Season 1 saw a higher initial peak at near 200 for a low point whereas season 2 saw the highest frequency around 175 for the initial peak.</p>
+<p>The distributions were similar, but the initial peaks were different. Therefore, we might want to look more into why total Player Load see this unusual distribution.</p>
+</section>
+<section id="player-load-per-minute-graphs" class="level4" data-number="3.4.3.2">
+<h4 data-number="3.4.3.2" class="anchored" data-anchor-id="player-load-per-minute-graphs"><span class="header-section-number">3.4.3.2</span> <code>Player Load Per Minute</code> Graphs:</h4>
+<div id="c45f5ca3" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>hist_stat(df1[<span class="st">'Player Load Per Minute'</span>], df1)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>hist_stat(df2[<span class="st">'Player Load Per Minute'</span>], df2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-6-output-1.png" width="575" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>mean: 12.639233576642336 
+std: 2.3229364432038557 
+min: 1.2 
+max: 19.7 
+Percentiles: [11.175 12.6   14.   ]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-6-output-3.png" width="575" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>mean: 10.86595744680851 
+std: 2.2742504182157637 
+min: 0.9 
+max: 17.1 
+Percentiles: [ 9.9 10.9 12.1]</code></pre>
+</div>
+</div>
+<p>Compared to Total Player Load, the Player Load Per Minute attains a relatively normal and symmetrical distribution. This indicates that players more see an “average” Player load every minute between 5 to around 12.5 player load / minute whereas total player load varies greatly between players in certain warmup/game groups.</p>
+</section>
+<section id="ima-accel-total-graphs" class="level4" data-number="3.4.3.3">
+<h4 data-number="3.4.3.3" class="anchored" data-anchor-id="ima-accel-total-graphs"><span class="header-section-number">3.4.3.3</span> <code>IMA Accel Total</code> Graphs:</h4>
+<div id="8383a769" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>hist_stat(df1[<span class="st">'IMA Accel Total'</span>], df1)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>hist_stat(df2[<span class="st">'IMA Accel Total'</span>], df2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-7-output-1.png" width="566" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>mean: 48.083941605839414 
+std: 23.163578047602947 
+min: 0 
+max: 121 
+Percentiles: [32.  47.5 64. ]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-7-output-3.png" width="566" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>mean: 36.765957446808514 
+std: 20.059560153866244 
+min: 0 
+max: 123 
+Percentiles: [22. 34. 49.]</code></pre>
+</div>
+</div>
+</section>
+<section id="ima-decel-total-graphs" class="level4" data-number="3.4.3.4">
+<h4 data-number="3.4.3.4" class="anchored" data-anchor-id="ima-decel-total-graphs"><span class="header-section-number">3.4.3.4</span> <code>IMA Decel Total</code> Graphs:</h4>
+<div id="e8add00a" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>hist_stat(df1[<span class="st">'IMA Decel Total'</span>], df1)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>hist_stat(df2[<span class="st">'IMA Decel Total'</span>], df2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-8-output-1.png" width="566" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>mean: 50.556569343065696 
+std: 23.999439103480896 
+min: 0 
+max: 114 
+Percentiles: [32.  52.5 69. ]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-8-output-3.png" width="576" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>mean: 47.433130699088146 
+std: 23.725108784898293 
+min: 0 
+max: 134 
+Percentiles: [30. 45. 64.]</code></pre>
+</div>
+</div>
+<p>The <code>IMA Accel Total Distribution</code> is more positively/right skewed compared to that of the <code>IMA Decel Total</code> when we compare the respective season graphs along with the percentile breakdowns. This is likely due to most players not accelerating or decreasing that often, but rather due to minor movements contributing to slowing down or speeding up. For example, a player could walk forward one step, and this would be seen as an acceleration.</p>
+<p>Another contributing factor could be that in <code>IMA Decel Total</code> that basketball players also back pedal during games/warm-ups. Catapult sensors might have a hard time understanding that facing one direction while accelerating in the opposite is possible. So in <code>IMA Decel Total</code>, we might see a second small peak around 30 for both because the sensors think the person is deccelerating when they’re accelerating in a back pedal.</p>
+</section>
+<section id="ima-jump-count-low-band-graphs" class="level4" data-number="3.4.3.5">
+<h4 data-number="3.4.3.5" class="anchored" data-anchor-id="ima-jump-count-low-band-graphs"><span class="header-section-number">3.4.3.5</span> <code>IMA Jump Count Low Band</code> Graphs:</h4>
+<div id="ebf24de5" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>hist_stat(df1[<span class="st">'IMA Jump Count Low Band'</span>], df1)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>hist_stat(df2[<span class="st">'IMA Jump Count Low Band'</span>], df2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-9-output-1.png" width="566" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>mean: 13.246350364963504 
+std: 7.394481901565035 
+min: 0 
+max: 46 
+Percentiles: [ 8. 12. 18.]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-9-output-3.png" width="566" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>mean: 13.300911854103344 
+std: 8.74098923380777 
+min: 0 
+max: 53 
+Percentiles: [ 7. 11. 17.]</code></pre>
+</div>
+</div>
+</section>
+<section id="ima-jump-count-med-band-graphs" class="level4" data-number="3.4.3.6">
+<h4 data-number="3.4.3.6" class="anchored" data-anchor-id="ima-jump-count-med-band-graphs"><span class="header-section-number">3.4.3.6</span> <code>IMA Jump Count Med Band</code> Graphs:</h4>
+<div id="427b8eac" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>hist_stat(df1[<span class="st">'IMA Jump Count Med Band'</span>], df1)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>hist_stat(df2[<span class="st">'IMA Jump Count Med Band'</span>], df2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-10-output-1.png" width="566" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>mean: 7.666058394160584 
+std: 4.7241205658490255 
+min: 0 
+max: 27 
+Percentiles: [ 4.  7. 10.]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-10-output-3.png" width="566" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>mean: 6.145896656534954 
+std: 3.883953803064002 
+min: 0 
+max: 23 
+Percentiles: [3. 6. 9.]</code></pre>
+</div>
+</div>
+</section>
+<section id="ima-jump-count-high-band-graphs" class="level4" data-number="3.4.3.7">
+<h4 data-number="3.4.3.7" class="anchored" data-anchor-id="ima-jump-count-high-band-graphs"><span class="header-section-number">3.4.3.7</span> <code>IMA Jump Count High Band</code> Graphs:</h4>
+<div id="6c6bb68b" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>hist_stat(df1[<span class="st">'IMA Jump Count High Band'</span>], df1)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>hist_stat(df2[<span class="st">'IMA Jump Count High Band'</span>], df2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-11-output-1.png" width="566" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>mean: 5.855839416058394 
+std: 3.5157651496298046 
+min: 0 
+max: 19 
+Percentiles: [3. 6. 8.]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-11-output-3.png" width="566" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>mean: 5.775075987841945 
+std: 4.403078372952223 
+min: 0 
+max: 26 
+Percentiles: [2. 5. 8.]</code></pre>
+</div>
+</div>
+<p>Overall, all of the IMA Jump Counts (low/med/high), experienced a right skew. It appears we have a higher amount of lower bands as the maximums were much higher (67 and 70 for season 1 and 2 respectively) compared to that of low and high bands.</p>
+<p>This means there are some extreme outliers/observations that can contribute to analysis. For example, we might be able to look into which players induced these extreme outlier observations and then examine if there’s something different in their training regime that we can add to other player regimes.</p>
+<p>Another reasoning for this positive skew is that players often observe a lack of low/med/high counts in terms of bands compared to experiencing these bands. We might need to take a look at the higher counts for each band to take a look at what’s different about these types of events (warm-up/game) compared to that of the lower counted bands.</p>
+</section>
+<section id="explosive-efforts-graphs" class="level4" data-number="3.4.3.8">
+<h4 data-number="3.4.3.8" class="anchored" data-anchor-id="explosive-efforts-graphs"><span class="header-section-number">3.4.3.8</span> <code>Explosive Efforts</code> Graphs:</h4>
+<div id="b97c4a02" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>hist_stat(df1[<span class="st">'Explosive Efforts'</span>], df1)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>hist_stat(df2[<span class="st">'Explosive Efforts'</span>], df2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-12-output-1.png" width="566" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>mean: 31.562043795620436 
+std: 15.320832300898099 
+min: 0 
+max: 81 
+Percentiles: [20. 32. 42.]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-12-output-3.png" width="572" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>mean: 24.53647416413374 
+std: 13.649856352721827 
+min: 0 
+max: 67 
+Percentiles: [14. 23. 33.]</code></pre>
+</div>
+</div>
+<p>In <code>Explosive Efforts</code>, it appears we have yet another positively skewed distribution. In Season 1, we see a lower frequency for the minimum (0) compared to that of Season 2. Otherwise, the shape of the rest of the distribution remains relatively similar.</p>
+<p>This may be a result of players not experiencing any <code>Explosive Efforts</code>. We might want to take a look at the wins/losses of games in season 1 and 2. Allowing us to compare successes across seasons. This would allow us to see a possible correlation with non-explosive efforts in both seasons. There might be a correlation, but as of now we’re not sure what the correlation might be.</p>
+</section>
+<section id="position-graphs" class="level4" data-number="3.4.3.9">
+<h4 data-number="3.4.3.9" class="anchored" data-anchor-id="position-graphs"><span class="header-section-number">3.4.3.9</span> <code>Position</code> Graphs:</h4>
+<div id="66e89f2c" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>categorical_stats(df1[<span class="st">'Position'</span>], df1)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>categorical_stats(df2[<span class="st">'Position'</span>], df2)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df1[<span class="st">'Position'</span>].unique())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-13-output-1.png" width="575" height="431" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-13-output-2.png" width="575" height="431" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['Guard' 'Forward' 'Center']</code></pre>
+</div>
+</div>
+<p>Consistently, we see more observations under Guard than in Forward and in Center (ordered in descending order). This might indicate that warmups/movement prep/game periods witnessed more guards activity than that of the other positions. We might be able to explore how this impacts the guards during gamedays/warmups, and if we should be focusing attentions on the other positions in this manner.</p>
+</section>
+<section id="period-graphs" class="level4" data-number="3.4.3.10">
+<h4 data-number="3.4.3.10" class="anchored" data-anchor-id="period-graphs"><span class="header-section-number">3.4.3.10</span> <code>Period</code> Graphs:</h4>
+<div id="10db9df5" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>categorical_stats(df1[<span class="st">'Period'</span>], df1)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>categorical_stats(df2[<span class="st">'Period'</span>], df2)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df1[<span class="st">'Period'</span>].unique())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-14-output-1.png" width="578" height="431" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-14-output-2.png" width="578" height="431" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['Period 1' 'Period 2']</code></pre>
+</div>
+</div>
+<p>A couple things to note is that Warm Up experienced higher observations. Movement prep, while even with number of observations in Season 1, experienced significantly lower observations compared to Period 1 and Period 2 in Season 2.</p>
+</section>
+</section>
+<section id="examine-correlations" class="level3" data-number="3.4.4">
+<h3 data-number="3.4.4" class="anchored" data-anchor-id="examine-correlations"><span class="header-section-number">3.4.4</span> Examine Correlations</h3>
+<section id="correlations-above-0.75" class="level4" data-number="3.4.4.1">
+<h4 data-number="3.4.4.1" class="anchored" data-anchor-id="correlations-above-0.75"><span class="header-section-number">3.4.4.1</span> Correlations above 0.75:</h4>
+<ul>
+<li><code>IMA Accel Total</code> and <code>Total Player Load</code>(0.86)</li>
+<li><code>IMA Decel Total</code> and <code>Total Player Load</code>(0.84)</li>
+<li><code>Explosive Efforts</code> and <code>Total Player Load</code>(0.77)</li>
+<li><code>IMA Accel Total</code> and <code>IMA Decel Total</code>(0.75)</li>
+<li><code>Explosive Efforts</code> and <code>IMA Accel Total</code>(0.84)</li>
+<li><code>Explosive Efforts</code> and <code>IMA Decel Total</code>(0.76)</li>
+</ul>
+<div id="ac926fa7" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a pairplot for the variables  </span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>sns.pairplot(df2[[<span class="st">'Total Player Load'</span>, <span class="st">'Player Load Per Minute'</span>, <span class="st">'IMA Accel Total'</span>,</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>       <span class="st">'IMA Decel Total'</span>, <span class="st">'IMA Jump Count Low Band'</span>, <span class="st">'IMA Jump Count Med Band'</span>,</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>       <span class="st">'IMA Jump Count High Band'</span>, <span class="st">'Explosive Efforts'</span>]], plot_kws<span class="op">=</span>{<span class="st">'alpha'</span>: <span class="fl">0.5</span>})</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculating the correlations for the variables</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>correlation <span class="op">=</span> df2[[<span class="st">'Total Player Load'</span>, <span class="st">'Player Load Per Minute'</span>, <span class="st">'IMA Accel Total'</span>,</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">'IMA Decel Total'</span>, <span class="st">'IMA Jump Count Low Band'</span>, <span class="st">'IMA Jump Count Med Band'</span>,</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">'IMA Jump Count High Band'</span>, <span class="st">'Explosive Efforts'</span>]].corr()</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the correlation in a heatmap </span></span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>sns.heatmap(correlation, annot<span class="op">=</span><span class="va">True</span>, cmap<span class="op">=</span><span class="st">'coolwarm'</span>, center<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding a title </span></span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Correlation between 3 continuous chosen variables'</span>)</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-15-output-1.png" width="1892" height="1887" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-15-output-2.png" width="900" height="819" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Correlations above 0.75:</p>
+<ul>
+<li><code>IMA Accel Total</code> and <code>Total Player Load</code>(0.82)</li>
+<li><code>IMA Decel Total</code> and <code>Total Player Load</code>(0.9)</li>
+<li><code>Explosive Efforts</code> and <code>Total Player Load</code>(0.79)</li>
+<li><code>IMA Decel Total</code> and <code>IMA Accel Total</code>(0.75)</li>
+<li><code>Explosive Efforts</code> and <code>IMA Accel Total</code>(0.84)</li>
+<li><code>Explosive Efforts</code> and <code>IMA Decel Total</code>(0.84)</li>
+</ul>
+<p>Negative Correlations:</p>
+<ul>
+<li><code>IMA Jump Count Med Band</code> and <code>Player Load per Minute</code>(-0.41)</li>
+<li><code>IMA Jump Count High Band</code> and <code>Player Load per Minute</code>(-0.064)</li>
+<li><code>IMA Accel Total</code> and <code>IMA Jump Count Med Band</code>(-0.014)</li>
+<li><code>IMA Jump Count Low Band</code> and <code>IMA Jump Count Med Band</code>(-0.054)</li>
+<li><code>Explosive Efforts</code> and <code>IMA Jump Count Med Band</code>(-0.19)</li>
+</ul>
+<p>I thought these negative correlations were an interesting factor because they were not seen in the first season’s data set.</p>
+</section>
+</section>
+<section id="explore-relationships" class="level3" data-number="3.4.5">
+<h3 data-number="3.4.5" class="anchored" data-anchor-id="explore-relationships"><span class="header-section-number">3.4.5</span> Explore Relationships</h3>
+<section id="relationship-between-ima-accel-total-and-total-player-load" class="level4" data-number="3.4.5.1">
+<h4 data-number="3.4.5.1" class="anchored" data-anchor-id="relationship-between-ima-accel-total-and-total-player-load"><span class="header-section-number">3.4.5.1</span> Relationship between <code>IMA Accel Total</code> and <code>Total Player Load</code></h4>
+<div id="540687af" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">5</span>))</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a scatterplot to look at the relationship in season 1 </span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>df1, x<span class="op">=</span><span class="st">'IMA Accel Total'</span>, y<span class="op">=</span><span class="st">'Total Player Load'</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>], color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting title and axis labels </span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">'Season 1 IMA Accel Total vs Total Player Load'</span>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">'IMA Accel Total'</span>)</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">'Total Player Load'</span>)</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a scatterplot to look at the relationship in season 2</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>df2, x<span class="op">=</span><span class="st">'IMA Accel Total'</span>, y<span class="op">=</span><span class="st">'Total Player Load'</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>], color<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting title and axis labels </span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">'Season 2 IMA Accel Total vs Total Player Load'</span>)</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">'IMA Accel Total'</span>)</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">'Total Player Load'</span>)</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-16-output-1.png" width="1142" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Both relationships seem to be positive and strongly correlated.</p>
+</section>
+<section id="relationship-between-ima-decel-total-and-total-player-load" class="level4" data-number="3.4.5.2">
+<h4 data-number="3.4.5.2" class="anchored" data-anchor-id="relationship-between-ima-decel-total-and-total-player-load"><span class="header-section-number">3.4.5.2</span> Relationship between <code>IMA Decel Total</code> and <code>Total Player Load</code></h4>
+<div id="c3fab63b" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">5</span>))</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a scatterplot to look at the relationship in season 1 </span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>df1, x<span class="op">=</span><span class="st">'IMA Decel Total'</span>, y<span class="op">=</span><span class="st">'Total Player Load'</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>], color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting title and axis labels </span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">'Season 1 IMA Decel Total vs Total Player Load'</span>)</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">'IMA Decel Total'</span>)</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">'Total Player Load'</span>)</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a scatterplot to look at the relationship in season 2</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>df2, x<span class="op">=</span><span class="st">'IMA Decel Total'</span>, y<span class="op">=</span><span class="st">'Total Player Load'</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>], color<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting title and axis labels </span></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">'Season 2 IMA Decel Total vs Total Player Load'</span>)</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">'IMA Decel Total'</span>)</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">'Total Player Load'</span>)</span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-17-output-1.png" width="1142" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Both relationships are highly correlated and seem to have small differences in their trends.</p>
+</section>
+<section id="relationship-between-explosive-efforts-and-total-player-load" class="level4" data-number="3.4.5.3">
+<h4 data-number="3.4.5.3" class="anchored" data-anchor-id="relationship-between-explosive-efforts-and-total-player-load"><span class="header-section-number">3.4.5.3</span> Relationship between <code>Explosive Efforts</code> and <code>Total Player Load</code></h4>
+<div id="1139ff10" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">5</span>))</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a scatterplot to look at the relationship in season 1</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>df1, x<span class="op">=</span><span class="st">'Explosive Efforts'</span>, y<span class="op">=</span><span class="st">'Total Player Load'</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>], color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting title and axis labels </span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">'Season 1 Explosive Efforts v. Total Player Load'</span>)</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">'Explosive Efforts'</span>)</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">'Total Player Load'</span>)</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a scatterplot to look at the relationship in season 2 </span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>df2, x<span class="op">=</span><span class="st">'Explosive Efforts'</span>, y<span class="op">=</span><span class="st">'Total Player Load'</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>], color<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting title and axis labels </span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">'Season 2 Explosive Efforts v. Total Player Load'</span>)</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">'Explosive Efforts'</span>)</span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">'Total Player Load'</span>)</span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-18-output-1.png" width="1142" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Both relationships are highly correlated and seem to have small differences in their trends.</p>
+</section>
+<section id="relationship-between-ima-decel-total-and-ima-accel-total" class="level4" data-number="3.4.5.4">
+<h4 data-number="3.4.5.4" class="anchored" data-anchor-id="relationship-between-ima-decel-total-and-ima-accel-total"><span class="header-section-number">3.4.5.4</span> Relationship between <code>IMA Decel Total</code> and <code>IMA Accel Total</code></h4>
+<div id="f19c5502" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">5</span>))</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a scatterplot to look at the relationship in season 1</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>df1, x<span class="op">=</span><span class="st">'IMA Decel Total'</span>, y<span class="op">=</span><span class="st">'IMA Accel Total'</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>], color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting title and axis labels </span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">'Season 1 IMA Decel Total v. IMA Accel Total'</span>)</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">'IMA Decel Total'</span>)</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">'IMA Accel Total'</span>)</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a scatterplot to look at the relationship in season 2</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>df2, x<span class="op">=</span><span class="st">'IMA Decel Total'</span>, y<span class="op">=</span><span class="st">'IMA Accel Total'</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>], color<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting title and axis labels </span></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">'Season 1 IMA Decel Total v. IMA Accel Total'</span>)</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">'IMA Decel Total'</span>)</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">'IMA Accel Total'</span>)</span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-19-output-1.png" width="1142" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Both relationships are moderate to strongly correlated and seem to have few differences in their trends.</p>
+</section>
+<section id="relationship-between-ima-accel-total-and-explosive-efforts" class="level4" data-number="3.4.5.5">
+<h4 data-number="3.4.5.5" class="anchored" data-anchor-id="relationship-between-ima-accel-total-and-explosive-efforts"><span class="header-section-number">3.4.5.5</span> Relationship between <code>IMA Accel Total</code> and <code>Explosive Efforts</code></h4>
+<div id="39dae0de" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">5</span>))</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a scatterplot to look at the relationship in season 1 </span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>df1, x<span class="op">=</span><span class="st">'IMA Accel Total'</span>, y<span class="op">=</span><span class="st">'Explosive Efforts'</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>], color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting title and axis labels </span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">'Season 1 IMA Accel Total vs Explosive Efforts'</span>)</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">'IMA Accel Total'</span>)</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">'Explosive Efforts'</span>)</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a scatterplot to look at the relationship in season 2</span></span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>df2, x<span class="op">=</span><span class="st">'IMA Accel Total'</span>, y<span class="op">=</span><span class="st">'Explosive Efforts'</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>], color<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting title and axis labels </span></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">'Season 2 IMA Accel Total vs Explosive Efforts'</span>)</span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">'IMA Accel Total'</span>)</span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">'Explosive Efforts'</span>)</span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-20-output-1.png" width="1142" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>These correlations are both positive and moderate-highly correlated. Their trends occur to be different with the season 2 data to have a higher trend line.</p>
+</section>
+<section id="relationship-between-ima-decel-total-and-explosive-efforts" class="level4" data-number="3.4.5.6">
+<h4 data-number="3.4.5.6" class="anchored" data-anchor-id="relationship-between-ima-decel-total-and-explosive-efforts"><span class="header-section-number">3.4.5.6</span> Relationship between <code>IMA Decel Total</code> and <code>Explosive Efforts</code></h4>
+<div id="b00d7a78" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">5</span>))</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a scatterplot to look at the relationship in season 1</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>df1, x<span class="op">=</span><span class="st">'IMA Decel Total'</span>, y<span class="op">=</span><span class="st">'Explosive Efforts'</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>], color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting title and axis labels </span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">'Season 1 IMA Decel Total vs Explosive Efforts'</span>)</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">'IMA Decel Total'</span>)</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">'Explosive Efforts'</span>)</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a scatterplot to look at the relationship in season 2</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>df2, x<span class="op">=</span><span class="st">'IMA Decel Total'</span>, y<span class="op">=</span><span class="st">'Explosive Efforts'</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>], color<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting title and axis labels </span></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">'Season 2 IMA Decel Total vs Explosive Efforts'</span>)</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">'IMA Decel Total'</span>)</span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">'Explosive Efforts'</span>)</span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-21-output-1.png" width="1142" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Both the comparisons of <code>IMA Decel Total</code> and <code>IMA Accel Totals</code> compared to <code>Explosive Efforts</code> are very similar. The trends both show the same shape and correlations.</p>
+</section>
+</section>
+<section id="looking-at-negative-correlations" class="level3" data-number="3.4.6">
+<h3 data-number="3.4.6" class="anchored" data-anchor-id="looking-at-negative-correlations"><span class="header-section-number">3.4.6</span> Looking at negative correlations:</h3>
+<ul>
+<li><code>IMA Jump Count Med Band</code> and <code>Player Load per Minute</code>(-0.41)</li>
+<li><code>IMA Jump Count High Band</code> and <code>Player Load per Minute</code>(-0.064)</li>
+<li><code>IMA Accel Total</code> and <code>IMA Jump Count Med Band</code>(-0.014)</li>
+<li><code>IMA Jump Count Low Band and IMA Jump Count Med Band</code>(-0.054)</li>
+<li><code>Explosive Efforts and IMA Jump Count Med Band</code>(-0.19)</li>
+</ul>
+<section id="relationship-between-ima-jump-count-med-band-and-player-load-per-minute" class="level4" data-number="3.4.6.1">
+<h4 data-number="3.4.6.1" class="anchored" data-anchor-id="relationship-between-ima-jump-count-med-band-and-player-load-per-minute"><span class="header-section-number">3.4.6.1</span> Relationship between <code>IMA Jump Count Med Band</code> and <code>Player Load Per Minute</code></h4>
+<div id="bb5cc23e" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">5</span>))</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a scatterplot to look at the relationship in season 1</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>df1, x<span class="op">=</span><span class="st">'IMA Jump Count Med Band'</span>, y<span class="op">=</span><span class="st">'Player Load Per Minute'</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>], color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting title and axis labels </span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">'Season 2 Jump Count Med Band vs Player Load per Minute'</span>)</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">'IMA Jump Count Med Band'</span>)</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">'Player Load per Minute'</span>)</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a scatterplot to look at the relationship in season 2 </span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>df2,x <span class="op">=</span> <span class="st">'IMA Jump Count Med Band'</span>, y<span class="op">=</span><span class="st">'Player Load Per Minute'</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>], color<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting title and axis labels </span></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">'Season 2 Jump Count Med Band vs Player Load per Minute'</span>)</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">'IMA Jump Count Med Band'</span>)</span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">'Player Load Per Minute'</span>)</span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-22-output-1.png" width="1142" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>These correlations appear to not be overwhelmingly negative but rather just scattered in similar ways with a slight negative skew for the season 2 data. We will not be exploring the lower correlated sets its clear that the negative value is not fully important for the relationships with such small correlations.</p>
+</section>
+<section id="exploring-the-negative-correlation0.19-between-ima-jump-count-med-band-and-explosive-efforts" class="level4" data-number="3.4.6.2">
+<h4 data-number="3.4.6.2" class="anchored" data-anchor-id="exploring-the-negative-correlation0.19-between-ima-jump-count-med-band-and-explosive-efforts"><span class="header-section-number">3.4.6.2</span> Exploring the Negative Correlation(0.19) between <code>IMA Jump Count Med Band</code> and <code>Explosive Efforts</code></h4>
+<div id="927c6765" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">5</span>))</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a scatterplot to look at the relationship in season 1 </span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>df1, x<span class="op">=</span><span class="st">'IMA Jump Count Med Band'</span>, y<span class="op">=</span><span class="st">'Explosive Efforts'</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>], color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting titles and axis labels </span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">'Season 1 Jump Count High Band vs Player Load'</span>)</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">'IMA Jump Count Med Band'</span>)</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">'Explosive Efforts'</span>)</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a scatterplot to look at the relationship in season 2 </span></span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>df2,x <span class="op">=</span> <span class="st">'IMA Jump Count Med Band'</span>, y<span class="op">=</span><span class="st">'Explosive Efforts'</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>], color<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting titles and axis labels </span></span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">'Season 2 Jump Count High Band vs Player Load'</span>)</span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">'IMA Jump Count Med Band'</span>)</span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">'Explosive Efforts'</span>)</span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-23-output-1.png" width="1142" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The correlation between <code>IMA Jump Count Med Band</code> and <code>Explosive Efforts</code> is different for both the season 1 data(0.076) and the season 2 data(-0.19). This raises the question of a potential different play style, or energy exertion during the games.</p>
+</section>
+<section id="statistical-analysis-of-ima-jump-count-med-band-and-explosive-efforts" class="level4" data-number="3.4.6.3">
+<h4 data-number="3.4.6.3" class="anchored" data-anchor-id="statistical-analysis-of-ima-jump-count-med-band-and-explosive-efforts"><span class="header-section-number">3.4.6.3</span> Statistical Analysis of <code>IMA Jump Count Med Band</code> and <code>Explosive Efforts</code></h4>
+<div id="4c472ff8" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a third dataframe to compare IMA Jump Count Med Band across both seasons </span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>df3<span class="op">=</span> pd.DataFrame({</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'IMA Jump Count Med Band'</span>: pd.concat([df1[<span class="st">'IMA Jump Count Med Band'</span>], df2[<span class="st">'IMA Jump Count Med Band'</span>]], ignore_index<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Season'</span>: [<span class="st">'Season 1'</span>] <span class="op">*</span> <span class="bu">len</span>(df1) <span class="op">+</span> [<span class="st">'Season 2'</span>] <span class="op">*</span> <span class="bu">len</span>(df2)</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating boxplot to compare IMA Jump Count Med Band across seasons </span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data<span class="op">=</span>df3, x<span class="op">=</span><span class="st">'Season'</span>, y<span class="op">=</span><span class="st">'IMA Jump Count Med Band'</span>, hue<span class="op">=</span><span class="st">'Season'</span>, palette<span class="op">=</span><span class="st">'spring'</span>)</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding title and axis labels </span></span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'IMA Jump Count Med Band'</span>)</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'IMA Jump Count Med Band: Season 1 vs Season 2'</span>)</span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>)</span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-24-output-1.png" width="659" height="523" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>It appears that the season 1 data has a larger spread then compared to season 2. Though, the IQR is larger in the season 2 data, meaning the values have more variability in this middle range. The mean of the seasn 2 data is also slightly larger then the season 1 data.</p>
+<div id="731f6b3b" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a third dataframe to compare Explosive Efforts across both seasons </span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>df3<span class="op">=</span> pd.DataFrame({</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Explosive Efforts'</span>: pd.concat([df1[<span class="st">'Explosive Efforts'</span>], df2[<span class="st">'Explosive Efforts'</span>]], ignore_index<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Season'</span>: [<span class="st">'Season 1'</span>] <span class="op">*</span> <span class="bu">len</span>(df1) <span class="op">+</span> [<span class="st">'Season 2'</span>] <span class="op">*</span> <span class="bu">len</span>(df2)</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating boxplot to compare Explosive Efforts across seasons </span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data<span class="op">=</span>df3, x<span class="op">=</span><span class="st">'Season'</span>, y<span class="op">=</span><span class="st">'Explosive Efforts'</span>, hue<span class="op">=</span><span class="st">'Season'</span>, palette<span class="op">=</span><span class="st">'spring'</span>)</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding title and axis labels </span></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Explosive Efforts'</span>)</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Explosive Efforts: Season 1 vs Season 2'</span>)</span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>)</span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-25-output-1.png" width="659" height="523" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The spread of <code>Explosive Efforts</code> is larger in the season 1 data, but the IQR is significantly larger in the season 2 data. This means that the data has more variability in the mid range of <code>Explosive Efforts</code>. The mean is also larger in the season 2 data, meaning players in season 1 had fewer <code>Explosive Efforts</code>.</p>
 
 
+</section>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
