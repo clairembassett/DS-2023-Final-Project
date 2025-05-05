@@ -1,6 +1,7 @@
 ---
 title: "Data Cleaning"
 format: html
+jupyter: python3
 ---
 
 # Cleaning the Dataset

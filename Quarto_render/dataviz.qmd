@@ -1,5 +1,5 @@
 ---
-title: "DataViz"
+title: "Data Visualization"
 format: html
 jupyter: python3
 ---
