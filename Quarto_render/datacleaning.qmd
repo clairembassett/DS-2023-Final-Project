@@ -5,6 +5,7 @@ jupyter: python3
 ---
 
 ## Loading the Dataset
+
 ```{python}
 # importing libraries
 import pandas as pd 
@@ -16,6 +17,7 @@ df2 = pd.read_csv("./season2.csv")
 
 
 ## Deleting Unused Columns
+
 ```{python}
 df1 = df1[['Date', 'About', 'Position', 'Period', 'Total Player Load', 'Player Load Per Minute', 'IMA Accel Total', 
            'IMA Decel Total', 'IMA Jump Count Low Band', 'IMA Jump Count Med Band', 'IMA Jump Count High Band', 'Explosive Efforts']]
@@ -29,6 +31,7 @@ print("df2:", df2.columns)
 ```
 
 ## Check for Missing Data
+
 ```{python}
 # looking for missing values in the selected columns 
 # loop through each column and print the percentage of missing values of each column
@@ -48,6 +51,7 @@ for col in df2.columns:
 ```
 
 ## Check for Duplicated/Correct Data Types in df1
+
 ```{python}
 #Following 3 lines commented out due to having similar purpose as the last line - uncomment out if wish to duplicate the cleaning:
 # using .unique() to check for duplicates because of spaces/wrong data types/etc
@@ -57,7 +61,6 @@ print(df1['Position'].unique() , "\n", df1['Position'].dtype) # -> all objects, 
 ```
 
 We see that there is one player whose name is not in the correct format of 'Athlete ..', so we will replace his name with 'Athlete K' per instructions. This is under the `About` column.
-
 ``` {python}
 df1['About'] = df1['About'].replace('Ben Vander Plas', 'Athlete K')
 df1['About'].unique()
@@ -65,7 +68,6 @@ df1['About'].unique()
 ``` 
 
 We only want to look at data for game-related observations, so we are only keeping rows where "Period 1" and "Period 2" are the `Period` type.
-
 ```{python}
 # Period 1, Period 2
 krows = []
@@ -78,7 +80,6 @@ df1 = df1.loc[krows].reset_index(drop=True)
 ```
 
 Be more specific when dropping rows now, since some of the rows kept did include "Period 1" in `Period`, but were actually a Scrimmage in "Period 1", not from a real game. This is specifically for Season 1 and not Season 2 as Season 2 doesn't have "scrimmage" included in `Period`.
-
 ```{python}
 # delete rows with "Scrimmage"
 drows = []
@@ -97,7 +98,6 @@ df1['Period'].value_counts()
 ```
 
 To finish cleaning the `Period` column, we are going to make sure that there are no duplicates in this column. Since some of these duplicates included a period number in the `Period` value, we will remove them to make them all merge into only two unique values.
-
 ```{python}
 # Period 1 = 1, Period 2 = 2
 
@@ -119,7 +119,6 @@ print(df1['Period'].value_counts())
 ```
 
 Continuing to check the columns:
-
 ```{python}
 #One more, we have commented out code due to an overwhelming amount of print statements of code that has a similar purpose to the last line. Uncomment the ones below if you wish to replicate exactly what we did in cleaning data:
 # print(df1['Total Player Load'].value_counts(), "\n", df1['Total Player Load'].dtype) # -> all floats
@@ -155,7 +154,6 @@ df2 = df2.loc[krows].reset_index(drop=True)
 ```
 
 Be more specific when dropping rows now, since some of the rows kept did include "Period 1", but were actually a Scrimmage Period 1 not a game. 
-
 ```{python}
 # delete rows with "Scrimmage"
 drows = []
@@ -206,8 +204,8 @@ print(df2['Period'].value_counts())
 ```
 
 Continuing to check the columns:
-
 ```{python}
+#There exists more commented out lines for the sake of overwhelming print statements. They have a similar purpose to the last line. Uncomment them out to replicate our cleaning.
 # print(df2['Total Player Load'].value_counts(), "\n", df2['Total Player Load'].dtype) # -> all floats
 # print(df2['Player Load Per Minute'].unique(), "\n", df2['Player Load Per Minute'].dtype) # -> all floats w/ one decimal place
 # print(df2['IMA Accel Total'].unique(), "\n", df2['IMA Accel Total'].dtype) # -> all ints, no duplicates
@@ -219,8 +217,7 @@ print(df2['Explosive Efforts'].unique(), "\n", df2['Explosive Efforts'].dtype) #
 ```
 
 
-For future use, like making our graphs and other analysis, we want to save the cleaned data sets as new csv files. 
-
+For future use, like making our graphs and other analysis, we want to save the cleaned data sets as new csv files. Again: we did not provide the season1 or season 2 csv files due to sensitive data on real people.
 ```{python}
 df1.to_csv("./season1_cleaned.csv", index=False)
 df2.to_csv("./season2_cleaned.csv", index=False)
