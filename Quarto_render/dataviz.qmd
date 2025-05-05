@@ -138,16 +138,14 @@ col_map = {
 avg_df = avg_df.sort_values('Date')
 x = range(len(avg_df))
 
-plt.figure(figsize=(10, 5.8))
-
-plt.axhspan(0, 1.0, color='#bcbcbc', zorder=0)  # soft ivory/sand
+plt.figure(figsize=(10, 5))
 
 plt.stackplot(
     avg_df['Date'],
     avg_df['IATS_IDTS'],
     avg_df['EES'],
     avg_df['Jumps'],
-    colors=['#232D4B', '#E57200', '#fbc902'],
+    colors=['#232D4B', '#E57200', '#D3D3D3'],
     alpha=1
 )
 
@@ -161,7 +159,7 @@ plt.tick_params(axis='y', length=0)
 handles = [
     Patch(facecolor='#D3D3D3'),  # Top layer in graph (Jumps)
     Patch(facecolor='#E57200'),  # Middle layer (EES)
-    Patch(facecolor='#fbc902'),  # Bottom layer (IATS_IDTS)
+    Patch(facecolor='#232D4B'),  # Bottom layer (IATS_IDTS)
 ]
 labels = [
     'IMA Jump Band Counts',
@@ -178,17 +176,16 @@ labels = [
 #     fontsize=8
 # )
 
-plt.text(0.44, 1.23, 'IMA Acceleration/Deceleration', transform=plt.gca().transAxes, fontsize=13, color='#000080')
+plt.text(0.45, 1.243, 'IMA Acceleration/Deceleration', transform=plt.gca().transAxes, fontsize=13, color='#000080')
 plt.text(0.097, 1.175, 'Explosive Efforts', transform=plt.gca().transAxes, fontsize=13, color='#E57200')
-plt.text(0.308, 1.175, 'IMA Jump Bands', transform=plt.gca().transAxes, fontsize=13, color='#fbc902')
+plt.text(0.308, 1.175, 'IMA Jump Bands', transform=plt.gca().transAxes, fontsize=13, color='#adadad')
 
 
 
+# plt.ylabel("Cumulative Proportions of Total Player Load")
 plt.xlabel('Game Dates')
 plt.text(-0.009, 1.04, "(Cumulative Proportions of Total Player Load)", transform=plt.gca().transAxes)
-plt.title("Total Player Load Contributors in Season 1 Games:                                                      contributes the most,\nfollowed by                               and                ", x=-0.01, y=1.15, loc='left')
-plt.text(0, -0.15, 'Source: Season 1 data, Athlete H data', transform=plt.gca().transAxes)
-
+plt.title("Total Player Load Contributors in Season 1 Games:                                                       contributes the most,\nfollowed by                               and                ", x=-0.01, y=1.15, loc='left')
 
 plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval=1)) 
 plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%b %d'))
@@ -196,6 +193,7 @@ plt.gca().xaxis.set_major_locator(mdates.AutoDateLocator())
 
 plt.xlim(avg_df['Date'].min(), avg_df['Date'].max())
 
+# plt.legend()
 plt.tight_layout()
 
 plt.show()
