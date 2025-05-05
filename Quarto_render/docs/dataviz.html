@@ -8,7 +8,7 @@
 
 <meta name="description" content="Our final project for DS 2023 Communicating with Data">
 
-<title>4&nbsp; DataViz – DS 2023 Final Project</title>
+<title>4&nbsp; Data Visualization – DS 2023 Final Project</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -119,7 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataviz.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">DataViz</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataviz.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualization</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -162,19 +162,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./eda.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">eda.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">EDA</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dataviz.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">DataViz</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./datadictionary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">datadictionary.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Dictionary</span></span></a>
   </div>
 </li>
     </ul>
@@ -197,7 +197,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">DataViz</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualization</span></h1>
 </div>
 
 
@@ -216,7 +216,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="graph-1-looking-at-the-percentages-of-total-player-load-separate-by-position-for-each-period" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Graph 1: Looking at the Percentages of Total Player Load separate by position, for each period</h1>
-<div id="9011612f" class="cell" data-execution_count="1">
+<div id="5db5cc90" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importing libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -225,7 +225,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> pd.read_csv(<span class="st">"./season1_cleaned.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To get the data ready for our pie charts, we need to separate the one dataframe by <code>Period</code> to make new two dataframes: p1 and p2. For the two new dataframes, we wil use the <code>groupby</code> method to group the data by <code>Position</code> and then find the average of the <code>Total Player Load</code> for each position.</p>
-<div id="76dad5f1" class="cell" data-execution_count="2">
+<div id="ee6a04fb" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Separate df1 into dataframes for period 1 and for period 2</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="op">=</span> df1[df1[<span class="st">'Period'</span>] <span class="op">==</span> <span class="st">'Period 1'</span>].copy().reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>p2 <span class="op">=</span> df1[df1[<span class="st">'Period'</span>] <span class="op">==</span> <span class="st">'Period 2'</span>].copy().reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
@@ -251,7 +251,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Now3 that we have the averages, we will divide each position’s <code>Total Player Load</code> by the sum of all positions’ <code>Total Player Load</code> to get the percentage. This percentage will be stored in a new column, <code>Proportion</code>.</p>
-<div id="08325292" class="cell" data-execution_count="3">
+<div id="951931e8" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a new column, Proportion, for each position's TPL for each period </span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>p1_avg[<span class="st">'Proportion'</span>] <span class="op">=</span> p1_avg[<span class="st">'Total Player Load'</span>] <span class="op">/</span> p1_avg[<span class="st">'Total Player Load'</span>].<span class="bu">sum</span>()</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>p2_avg[<span class="st">'Proportion'</span>] <span class="op">=</span> p2_avg[<span class="st">'Total Player Load'</span>] <span class="op">/</span> p2_avg[<span class="st">'Total Player Load'</span>].<span class="bu">sum</span>()</span>
@@ -272,7 +272,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>To plot our donut charts, we will use the <code>plot.pie</code> method. Using subplots, we can create two donut charts side by side to demonstrate the percentages of <code>Total Player Load</code> for each position in each period.</p>
-<div id="f211aeb3" class="cell" data-execution_count="4">
+<div id="40bb8cd6" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make color dict for positions</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> {<span class="st">'Guard'</span>: <span class="st">'#E57200'</span>, <span class="st">'Forward'</span>: <span class="st">'#232D4B'</span>, <span class="st">'Center'</span>: <span class="st">'#C8CBD2'</span>}</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -311,14 +311,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="graph-2-looking-at-explosive-efforts-ima-acceldecels-and-ima-jump-band-counts-med-high-low" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> Graph 2: Looking at Explosive efforts, ima accel/decels, and ima jump band counts (med, high, low)</h1>
-<div id="2abc3013" class="cell" data-execution_count="5">
+<div id="9c4097af" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importing libraries for graph 2</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.dates <span class="im">as</span> mdates</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> Patch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>There must be setup in logistics like turning <code>Date</code> string from the dataset into a datetime structure and filtering the data just for that of Athlete H:</p>
-<div id="d9ce77bd" class="cell" data-execution_count="6">
+<div id="aff415f8" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain `Date` from df1 and turn into datetime object through pandas</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df1[<span class="st">'Date'</span>] <span class="op">=</span> pd.to_datetime(df1[<span class="st">'Date'</span>], <span class="bu">format</span><span class="op">=</span><span class="st">'%m/</span><span class="sc">%d</span><span class="st">/%y'</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -335,7 +335,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>EES_pct</strong> =<code>Explosive Efforts</code></li>
 </ol>
 <p>To find the proportions, all 3 main variables will be divided by the <code>Total Player Load</code> at the matching dates.</p>
-<div id="a900601e" class="cell" data-execution_count="7">
+<div id="d2ed8ecc" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Avg_IATS_IDTS_By_Date is the average of the IMA Accel/Decel total. Having both independently on the graph causes busy-ness</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># They're similar in correlation to total player load (found through EDA)</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>df1_copy[<span class="st">'Avg_IATS_IDTS_By_Date'</span>] <span class="op">=</span> (</span>
@@ -356,82 +356,81 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Explosive Efforts can remain independent since there's only one "version"</span></span>
 <span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>df1_copy[<span class="st">'EES_pct'</span>] <span class="op">=</span> df1_copy[<span class="st">'Explosive Efforts'</span>] <span class="op">/</span> df1_copy[<span class="st">'Total Player Load'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="e851b8e8" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>avg_df <span class="op">=</span> df1_copy.groupby(<span class="st">'Date'</span>)[[ <span class="st">'IATS_IDTS_pct'</span>, <span class="st">'EES_pct'</span>, <span class="st">'Jumps_pct'</span>]].mean().reset_index()</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>avg_df.columns <span class="op">=</span> [<span class="st">'Date'</span>,  <span class="st">'IATS_IDTS'</span>, <span class="st">'EES'</span>, <span class="st">'Jumps'</span>]</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>col_map <span class="op">=</span> {</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'IATS_IDTS'</span>: <span class="st">'#232D4B'</span>,</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'EES'</span>: <span class="st">'#E57200'</span>,</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Jumps'</span>: <span class="st">'#D3D3D3'</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<div id="e69a5f91" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>avg_df <span class="op">=</span> df1_copy.groupby(<span class="st">'Date'</span>)[[ <span class="st">'IATS_IDTS_pct'</span>, <span class="st">'EES_pct'</span>, <span class="st">'Jumps_pct'</span>]].mean().reset_index()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>avg_df.columns <span class="op">=</span> [<span class="st">'Date'</span>,  <span class="st">'IATS_IDTS'</span>, <span class="st">'EES'</span>, <span class="st">'Jumps'</span>]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>col_map <span class="op">=</span> {</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'IATS_IDTS'</span>: <span class="st">'#232D4B'</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'EES'</span>: <span class="st">'#E57200'</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Jumps'</span>: <span class="st">'#D3D3D3'</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>avg_df <span class="op">=</span> avg_df.sort_values(<span class="st">'Date'</span>)</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="bu">range</span>(<span class="bu">len</span>(avg_df))</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="fl">5.8</span>))</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>plt.axhspan(<span class="dv">0</span>, <span class="fl">1.0</span>, color<span class="op">=</span><span class="st">'#bcbcbc'</span>, zorder<span class="op">=</span><span class="dv">0</span>)  <span class="co"># soft ivory/sand</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>plt.stackplot(</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    avg_df[<span class="st">'Date'</span>],</span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    avg_df[<span class="st">'IATS_IDTS'</span>],</span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    avg_df[<span class="st">'EES'</span>],</span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    avg_df[<span class="st">'Jumps'</span>],</span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    colors<span class="op">=</span>[<span class="st">'#232D4B'</span>, <span class="st">'#E57200'</span>, <span class="st">'#fbc902'</span>],</span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="dv">1</span></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>avg_df <span class="op">=</span> avg_df.sort_values(<span class="st">'Date'</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="bu">range</span>(<span class="bu">len</span>(avg_df))</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="fl">5.8</span>))</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>plt.axhspan(<span class="dv">0</span>, <span class="fl">1.0</span>, color<span class="op">=</span><span class="st">'#bcbcbc'</span>, zorder<span class="op">=</span><span class="dv">0</span>)  <span class="co"># soft ivory/sand</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>plt.stackplot(</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    avg_df[<span class="st">'Date'</span>],</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    avg_df[<span class="st">'IATS_IDTS'</span>],</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    avg_df[<span class="st">'EES'</span>],</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    avg_df[<span class="st">'Jumps'</span>],</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    colors<span class="op">=</span>[<span class="st">'#232D4B'</span>, <span class="st">'#E57200'</span>, <span class="st">'#fbc902'</span>],</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>plt.gca().spines[<span class="st">'top'</span>].set_visible(<span class="va">False</span>)</span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>plt.gca().spines[<span class="st">'right'</span>].set_visible(<span class="va">False</span>)</span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>plt.gca().spines[<span class="st">'left'</span>].set_visible(<span class="va">False</span>)</span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>plt.gca().spines[<span class="st">'bottom'</span>].set_visible(<span class="va">False</span>)</span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>plt.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, length<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>handles <span class="op">=</span> [</span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>    Patch(facecolor<span class="op">=</span><span class="st">'#D3D3D3'</span>),  <span class="co"># Top layer in graph (Jumps)</span></span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>    Patch(facecolor<span class="op">=</span><span class="st">'#E57200'</span>),  <span class="co"># Middle layer (EES)</span></span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>    Patch(facecolor<span class="op">=</span><span class="st">'#fbc902'</span>),  <span class="co"># Bottom layer (IATS_IDTS)</span></span>
-<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [</span>
-<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>    <span class="st">'IMA Jump Band Counts'</span>,</span>
-<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Explosive Efforts'</span>,</span>
-<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>    <span class="st">'IMA Accels &amp; Decels'</span></span>
-<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.legend(</span></span>
-<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a><span class="co">#     handles=handles,</span></span>
-<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a><span class="co">#     labels=labels,</span></span>
-<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a><span class="co">#     loc="upper right",</span></span>
-<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a><span class="co">#     bbox_to_anchor=(1, 1.2),</span></span>
-<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a><span class="co">#     frameon=False,</span></span>
-<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a><span class="co">#     fontsize=8</span></span>
-<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
-<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">0.44</span>, <span class="fl">1.23</span>, <span class="st">'IMA Acceleration/Deceleration'</span>, transform<span class="op">=</span>plt.gca().transAxes, fontsize<span class="op">=</span><span class="dv">13</span>, color<span class="op">=</span><span class="st">'#000080'</span>)</span>
-<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">0.097</span>, <span class="fl">1.175</span>, <span class="st">'Explosive Efforts'</span>, transform<span class="op">=</span>plt.gca().transAxes, fontsize<span class="op">=</span><span class="dv">13</span>, color<span class="op">=</span><span class="st">'#E57200'</span>)</span>
-<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">0.308</span>, <span class="fl">1.175</span>, <span class="st">'IMA Jump Bands'</span>, transform<span class="op">=</span>plt.gca().transAxes, fontsize<span class="op">=</span><span class="dv">13</span>, color<span class="op">=</span><span class="st">'#fbc902'</span>)</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>plt.gca().spines[<span class="st">'top'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>plt.gca().spines[<span class="st">'right'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>plt.gca().spines[<span class="st">'left'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>plt.gca().spines[<span class="st">'bottom'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>plt.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, length<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>handles <span class="op">=</span> [</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>    Patch(facecolor<span class="op">=</span><span class="st">'#D3D3D3'</span>),  <span class="co"># Top layer in graph (Jumps)</span></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>    Patch(facecolor<span class="op">=</span><span class="st">'#E57200'</span>),  <span class="co"># Middle layer (EES)</span></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>    Patch(facecolor<span class="op">=</span><span class="st">'#fbc902'</span>),  <span class="co"># Bottom layer (IATS_IDTS)</span></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>    <span class="st">'IMA Jump Band Counts'</span>,</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Explosive Efforts'</span>,</span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>    <span class="st">'IMA Accels &amp; Decels'</span></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.legend(</span></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a><span class="co">#     handles=handles,</span></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a><span class="co">#     labels=labels,</span></span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a><span class="co">#     loc="upper right",</span></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a><span class="co">#     bbox_to_anchor=(1, 1.2),</span></span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a><span class="co">#     frameon=False,</span></span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a><span class="co">#     fontsize=8</span></span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">0.44</span>, <span class="fl">1.23</span>, <span class="st">'IMA Acceleration/Deceleration'</span>, transform<span class="op">=</span>plt.gca().transAxes, fontsize<span class="op">=</span><span class="dv">13</span>, color<span class="op">=</span><span class="st">'#000080'</span>)</span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">0.097</span>, <span class="fl">1.175</span>, <span class="st">'Explosive Efforts'</span>, transform<span class="op">=</span>plt.gca().transAxes, fontsize<span class="op">=</span><span class="dv">13</span>, color<span class="op">=</span><span class="st">'#E57200'</span>)</span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">0.308</span>, <span class="fl">1.175</span>, <span class="st">'IMA Jump Bands'</span>, transform<span class="op">=</span>plt.gca().transAxes, fontsize<span class="op">=</span><span class="dv">13</span>, color<span class="op">=</span><span class="st">'#fbc902'</span>)</span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Game Dates'</span>)</span>
-<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="fl">0.009</span>, <span class="fl">1.04</span>, <span class="st">"(Cumulative Proportions of Total Player Load)"</span>, transform<span class="op">=</span>plt.gca().transAxes)</span>
-<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Total Player Load Contributors in Season 1 Games:                                                      contributes the most,</span><span class="ch">\n</span><span class="st">followed by                               and                "</span>, x<span class="op">=-</span><span class="fl">0.01</span>, y<span class="op">=</span><span class="fl">1.15</span>, loc<span class="op">=</span><span class="st">'left'</span>)</span>
-<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="dv">0</span>, <span class="op">-</span><span class="fl">0.15</span>, <span class="st">'Source: Season 1 data, Athlete H data'</span>, transform<span class="op">=</span>plt.gca().transAxes)</span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Game Dates'</span>)</span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="fl">0.009</span>, <span class="fl">1.04</span>, <span class="st">"(Cumulative Proportions of Total Player Load)"</span>, transform<span class="op">=</span>plt.gca().transAxes)</span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Total Player Load Contributors in Season 1 Games:                                                      contributes the most,</span><span class="ch">\n</span><span class="st">followed by                               and                "</span>, x<span class="op">=-</span><span class="fl">0.01</span>, y<span class="op">=</span><span class="fl">1.15</span>, loc<span class="op">=</span><span class="st">'left'</span>)</span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="dv">0</span>, <span class="op">-</span><span class="fl">0.15</span>, <span class="st">'Source: Season 1 data, Athlete H data'</span>, transform<span class="op">=</span>plt.gca().transAxes)</span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a>plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval<span class="op">=</span><span class="dv">1</span>)) </span>
-<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a>plt.gca().xaxis.set_major_formatter(mdates.DateFormatter(<span class="st">'%b </span><span class="sc">%d</span><span class="st">'</span>))</span>
-<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a>plt.gca().xaxis.set_major_locator(mdates.AutoDateLocator())</span>
-<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a>plt.xlim(avg_df[<span class="st">'Date'</span>].<span class="bu">min</span>(), avg_df[<span class="st">'Date'</span>].<span class="bu">max</span>())</span>
-<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a>plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval<span class="op">=</span><span class="dv">1</span>)) </span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a>plt.gca().xaxis.set_major_formatter(mdates.DateFormatter(<span class="st">'%b </span><span class="sc">%d</span><span class="st">'</span>))</span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a>plt.gca().xaxis.set_major_locator(mdates.AutoDateLocator())</span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a>plt.xlim(avg_df[<span class="st">'Date'</span>].<span class="bu">min</span>(), avg_df[<span class="st">'Date'</span>].<span class="bu">max</span>())</span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -846,13 +845,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./eda.html" class="pagination-link" aria-label="eda.html">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">eda.html</span></span>
+      <a href="./eda.html" class="pagination-link" aria-label="EDA">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">EDA</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./datadictionary.html" class="pagination-link" aria-label="datadictionary.html">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">datadictionary.html</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./datadictionary.html" class="pagination-link" aria-label="Data Dictionary">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Dictionary</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
