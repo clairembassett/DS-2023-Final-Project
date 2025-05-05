@@ -77,7 +77,7 @@ for i in range(len(df1)):
 df1 = df1.loc[krows].reset_index(drop=True)
 ```
 
-Be more specific when dropping rows now, since some of the rows kept did include "Period 1", but were actually a Scrimmage Period 1, not a game.
+Be more specific when dropping rows now, since some of the rows kept did include "Period 1" in `Period`, but were actually a Scrimmage in "Period 1", not from a real game. This is specifically for Season 1 and not Season 2 as Season 2 doesn't have "scrimmage" included in `Period`.
 
 ```{python}
 # delete rows with "Scrimmage"
@@ -121,10 +121,11 @@ print(df1['Period'].value_counts())
 Continuing to check the columns:
 
 ```{python}
-# # print(df1['Total Player Load'].value_counts(), "\n", df1['Total Player Load'].dtype) # -> all floats
-# # print(df1['Player Load Per Minute'].unique(), "\n", df1['Player Load Per Minute'].dtype) # -> all floats w/ one decimal place
-# # print(df1['IMA Accel Total'].unique(), "\n", df1['IMA Accel Total'].dtype) # -> all ints, no duplicates
-# # print(df1['IMA Decel Total'].unique(), "\n", df1['IMA Decel Total'].dtype) # -> all ints, no duplicates 
+#One more, we have commented out code due to an overwhelming amount of print statements of code that has a similar purpose to the last line. Uncomment the ones below if you wish to replicate exactly what we did in cleaning data:
+# print(df1['Total Player Load'].value_counts(), "\n", df1['Total Player Load'].dtype) # -> all floats
+# print(df1['Player Load Per Minute'].unique(), "\n", df1['Player Load Per Minute'].dtype) # -> all floats w/ one decimal place
+# print(df1['IMA Accel Total'].unique(), "\n", df1['IMA Accel Total'].dtype) # -> all ints, no duplicates
+# print(df1['IMA Decel Total'].unique(), "\n", df1['IMA Decel Total'].dtype) # -> all ints, no duplicates 
 # print(df1['IMA Jump Count Low Band'].unique(), "\n", df1['IMA Jump Count Low Band'].dtype) # -> all ints, no duplicates
 # print(df1['IMA Jump Count Med Band'].unique(), "\n", df1['IMA Jump Count Med Band'].dtype) # -> all ints, no duplicates
 # print(df1['IMA Jump Count High Band'].unique(), "\n", df1['IMA Jump Count High Band'].dtype) # -> all ints, no duplicates
@@ -134,8 +135,8 @@ print(df1['Explosive Efforts'].unique(), "\n", df1['Explosive Efforts'].dtype) #
 
 ## Check for Duplicates/Correct Data Types in df2:
 Once again, we can use the .unique() and .value_counts() functions to check for duplicates that might be caused by spaces or change in data types.
-
 ```{python}
+#There exists more commented out lines for the sake of overwhelming print statements. They have a similar purpose to the last line. Uncomment them out to replicate our cleaning.
 # print(df2['Date'].unique() , "\n", df2['Date'].dtype) # -> all objects, no duplicates
 # print(df2['About'].unique() , "\n", df2['About'].dtype) # -> all objects, no duplicates
 print(df2['Position'].unique() , "\n", df2['Position'].dtype) # -> all objects, no duplicates
