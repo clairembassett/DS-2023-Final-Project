@@ -219,7 +219,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="loading-the-dataset" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="loading-the-dataset"><span class="header-section-number">2.1</span> Loading the Dataset</h2>
-<div id="7df9d460" class="cell" data-execution_count="1">
+<div id="3a578bbc" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># importing libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -230,7 +230,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="deleting-unused-columns" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="deleting-unused-columns"><span class="header-section-number">2.2</span> Deleting Unused Columns</h2>
-<div id="628c6e2f" class="cell" data-execution_count="2">
+<div id="3a6bb568" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> df1[[<span class="st">'Date'</span>, <span class="st">'About'</span>, <span class="st">'Position'</span>, <span class="st">'Period'</span>, <span class="st">'Total Player Load'</span>, <span class="st">'Player Load Per Minute'</span>, <span class="st">'IMA Accel Total'</span>, </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>           <span class="st">'IMA Decel Total'</span>, <span class="st">'IMA Jump Count Low Band'</span>, <span class="st">'IMA Jump Count Med Band'</span>, <span class="st">'IMA Jump Count High Band'</span>, <span class="st">'Explosive Efforts'</span>]]</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -256,7 +256,7 @@ df2: Index(['Date', 'About', 'Position', 'Period', 'Total Player Load',
 </section>
 <section id="check-for-missing-data" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="check-for-missing-data"><span class="header-section-number">2.3</span> Check for Missing Data</h2>
-<div id="df0699c2" class="cell" data-execution_count="3">
+<div id="719e5bae" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># looking for missing values in the selected columns </span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># loop through each column and print the percentage of missing values of each column</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Season1 Missings:"</span>)</span>
@@ -305,7 +305,7 @@ Explosive Efforts : 0.0</code></pre>
 </section>
 <section id="check-for-duplicatedcorrect-data-types-in-df1" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="check-for-duplicatedcorrect-data-types-in-df1"><span class="header-section-number">2.4</span> Check for Duplicated/Correct Data Types in df1</h2>
-<div id="12b3128d" class="cell" data-execution_count="4">
+<div id="8ce6ddc7" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Following 3 lines commented out due to having similar purpose as the last line - uncomment out if wish to duplicate the cleaning:</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># using .unique() to check for duplicates because of spaces/wrong data types/etc</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># print(df1['Date'].unique() , "\n", df1['Date'].dtype) # -&gt; all objects, no duplicates</span></span>
@@ -317,7 +317,7 @@ Explosive Efforts : 0.0</code></pre>
 </div>
 </div>
 <p>We see that there is one player whose name is not in the correct format of ‘Athlete ..’, so we will replace his name with ‘Athlete K’ per instructions. This is under the <code>About</code> column.</p>
-<div id="5170aae1" class="cell" data-execution_count="5">
+<div id="4bc38a13" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df1[<span class="st">'About'</span>] <span class="op">=</span> df1[<span class="st">'About'</span>].replace(<span class="st">'Ben Vander Plas'</span>, <span class="st">'Athlete K'</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df1[<span class="st">'About'</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
@@ -327,7 +327,7 @@ Explosive Efforts : 0.0</code></pre>
 </div>
 </div>
 <p>We only want to look at data for game-related observations, so we are only keeping rows where “Period 1” and “Period 2” are the <code>Period</code> type.</p>
-<div id="c8ec9043" class="cell" data-execution_count="6">
+<div id="f735798d" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Period 1, Period 2</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>krows <span class="op">=</span> []</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -338,7 +338,7 @@ Explosive Efforts : 0.0</code></pre>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> df1.loc[krows].reset_index(drop<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Be more specific when dropping rows now, since some of the rows kept did include “Period 1” in <code>Period</code>, but were actually a Scrimmage in “Period 1”, not from a real game. This is specifically for Season 1 and not Season 2 as Season 2 doesn’t have “scrimmage” included in <code>Period</code>.</p>
-<div id="96a2d601" class="cell" data-execution_count="7">
+<div id="1e7a2683" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># delete rows with "Scrimmage"</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>drows <span class="op">=</span> []</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -364,7 +364,7 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 <p>To finish cleaning the <code>Period</code> column, we are going to make sure that there are no duplicates in this column. Since some of these duplicates included a period number in the <code>Period</code> value, we will remove them to make them all merge into only two unique values.</p>
-<div id="d0346be2" class="cell" data-execution_count="8">
+<div id="1affcef2" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Period 1 = 1, Period 2 = 2</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># cleaning Period 1</span></span>
@@ -390,7 +390,7 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 <p>Continuing to check the columns:</p>
-<div id="5c20775e" class="cell" data-execution_count="9">
+<div id="508278e1" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#One more, we have commented out code due to an overwhelming amount of print statements of code that has a similar purpose to the last line. Uncomment the ones below if you wish to replicate exactly what we did in cleaning data:</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># print(df1['Total Player Load'].value_counts(), "\n", df1['Total Player Load'].dtype) # -&gt; all floats</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># print(df1['Player Load Per Minute'].unique(), "\n", df1['Player Load Per Minute'].dtype) # -&gt; all floats w/ one decimal place</span></span>
@@ -411,7 +411,7 @@ Name: count, dtype: int64</code></pre>
 <section id="check-for-duplicatescorrect-data-types-in-df2" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="check-for-duplicatescorrect-data-types-in-df2"><span class="header-section-number">2.5</span> Check for Duplicates/Correct Data Types in df2:</h2>
 <p>Once again, we can use the .unique() and .value_counts() functions to check for duplicates that might be caused by spaces or change in data types.</p>
-<div id="84983b75" class="cell" data-execution_count="10">
+<div id="8aaf42bd" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#There exists more commented out lines for the sake of overwhelming print statements. They have a similar purpose to the last line. Uncomment them out to replicate our cleaning.</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># print(df2['Date'].unique() , "\n", df2['Date'].dtype) # -&gt; all objects, no duplicates</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># print(df2['About'].unique() , "\n", df2['About'].dtype) # -&gt; all objects, no duplicates</span></span>
@@ -422,7 +422,7 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 <p>We only want to look at data for game-related observations, so we are only keeping rows where “Period 1” and “Period 2” are the <code>Period</code> type.</p>
-<div id="dfda2c30" class="cell" data-execution_count="11">
+<div id="7bbc9458" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Period 1, Period 2</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>krows <span class="op">=</span> []</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -433,7 +433,7 @@ Name: count, dtype: int64</code></pre>
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> df2.loc[krows].reset_index(drop<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Be more specific when dropping rows now, since some of the rows kept did include “Period 1”, but were actually a Scrimmage Period 1 not a game.</p>
-<div id="a41d8333" class="cell" data-execution_count="12">
+<div id="81a487f5" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># delete rows with "Scrimmage"</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>drows <span class="op">=</span> []</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -463,7 +463,7 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 <p>To finish cleaning the <code>Period</code> column, we are going to make sure that there are no duplicates in this column. Since some of these duplicates included a period number in the <code>Period</code> value, we will remove them to make them all merge into only two unique values.</p>
-<div id="a0a174fa" class="cell" data-execution_count="13">
+<div id="5f13d89e" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Period 1 = 1, Period 2 = 2</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># cleaning Period 1</span></span>
@@ -500,15 +500,16 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 <p>Continuing to check the columns:</p>
-<div id="2daa486f" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print(df2['Total Player Load'].value_counts(), "\n", df2['Total Player Load'].dtype) # -&gt; all floats</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># print(df2['Player Load Per Minute'].unique(), "\n", df2['Player Load Per Minute'].dtype) # -&gt; all floats w/ one decimal place</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># print(df2['IMA Accel Total'].unique(), "\n", df2['IMA Accel Total'].dtype) # -&gt; all ints, no duplicates</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># print(df2['IMA Decel Total'].unique(), "\n", df2['IMA Decel Total'].dtype) # -&gt; all ints, no duplicates </span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co"># print(df2['IMA Jump Count Low Band'].unique(), "\n", df2['IMA Jump Count Low Band'].dtype) # -&gt; all ints, no duplicates</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co"># print(df2['IMA Jump Count Med Band'].unique(), "\n", df2['IMA Jump Count Med Band'].dtype) # -&gt; all ints, no duplicates</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># print(df2['IMA Jump Count High Band'].unique(), "\n", df2['IMA Jump Count High Band'].dtype) # -&gt; all ints, no duplicates</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df2[<span class="st">'Explosive Efforts'</span>].unique(), <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>, df2[<span class="st">'Explosive Efforts'</span>].dtype) <span class="co"># -&gt; all ints, no duplicates</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="1b1ebd42" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#There exists more commented out lines for the sake of overwhelming print statements. They have a similar purpose to the last line. Uncomment them out to replicate our cleaning.</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># print(df2['Total Player Load'].value_counts(), "\n", df2['Total Player Load'].dtype) # -&gt; all floats</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># print(df2['Player Load Per Minute'].unique(), "\n", df2['Player Load Per Minute'].dtype) # -&gt; all floats w/ one decimal place</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># print(df2['IMA Accel Total'].unique(), "\n", df2['IMA Accel Total'].dtype) # -&gt; all ints, no duplicates</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co"># print(df2['IMA Decel Total'].unique(), "\n", df2['IMA Decel Total'].dtype) # -&gt; all ints, no duplicates </span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co"># print(df2['IMA Jump Count Low Band'].unique(), "\n", df2['IMA Jump Count Low Band'].dtype) # -&gt; all ints, no duplicates</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># print(df2['IMA Jump Count Med Band'].unique(), "\n", df2['IMA Jump Count Med Band'].dtype) # -&gt; all ints, no duplicates</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co"># print(df2['IMA Jump Count High Band'].unique(), "\n", df2['IMA Jump Count High Band'].dtype) # -&gt; all ints, no duplicates</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df2[<span class="st">'Explosive Efforts'</span>].unique(), <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>, df2[<span class="st">'Explosive Efforts'</span>].dtype) <span class="co"># -&gt; all ints, no duplicates</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[19 23  8  7 42 34 32 25 18 22 20  2  3 33 26 27  5  9 11  6 43 30 35 29
  17 21 14  0 50 13 31 10 15 24 52 61 28 36 16 45 49 56 46  4 65 12 40 67
@@ -516,8 +517,8 @@ Name: count, dtype: int64</code></pre>
  int64</code></pre>
 </div>
 </div>
-<p>For future use, like making our graphs and other analysis, we want to save the cleaned data sets as new csv files.</p>
-<div id="2cbb2d03" class="cell" data-execution_count="15">
+<p>For future use, like making our graphs and other analysis, we want to save the cleaned data sets as new csv files. Again: we did not provide the season1 or season 2 csv files due to sensitive data on real people.</p>
+<div id="99b3956a" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df1.to_csv(<span class="st">"./season1_cleaned.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>df2.to_csv(<span class="st">"./season2_cleaned.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
