@@ -3,29 +3,29 @@ title: "Data Dictionary"
 format: html
 jupyter: python3
 ---
-## Data Dictionary
-A collection of the variables being used in the project and their definitions.
 
-Position: Athlete's Position - either Center, Forward, or Guard.
+## A collection of the variables being used in the project and their definitions.
 
-Date: The date the game was played.
+`Position`: Athlete's Position - either Center, Forward, or Guard.
 
-About: The assigned athlete identification letter.
+`Date`: The date the game was played.
 
-Period: Game period - either Period 1 or Period 2.
+`About`: The assigned athlete identification letter.
 
-Total Player Load: A measure of overall physical exertion.
+`Period`: Game period - either Period 1 or Period 2.
 
-Player Load per Minute: Total player load divided by minutes played.
+`Total Player Load`: A measure of overall physical exertion.
 
-IMA Accel Total: Total number of acceleration movements across all intensity levels.
+`Player Load per Minute`: Total player load divided by minutes played.
 
-IMA Decel Total: Total number of deceleration movements across all intensity levels.
+`IMA Accel Total`: Total number of acceleration movements across all intensity levels.
 
-IMA Jump Count Low Band: Number of low-intensity jumps.
+`IMA Decel Total`: Total number of deceleration movements across all intensity levels.
 
-IMA Jump Count Med Band: Number of medium-intensity jumps.
+`IMA Jump Count Low Band`: Number of low-intensity jumps.
 
-IMA Jump Count High Band: Number of high-intensity jumps.
+`IMA Jump Count Med Band`: Number of medium-intensity jumps.
 
-Explosive Efforts: Total number of high-intensity accelerations, decelerations, and changes in direction.
+`IMA Jump Count High Band`: Number of high-intensity jumps.
+
+`Explosive Efforts`: Total number of high-intensity accelerations, decelerations, and changes in direction.
