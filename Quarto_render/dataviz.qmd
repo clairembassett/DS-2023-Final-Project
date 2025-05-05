@@ -200,3 +200,72 @@ plt.tight_layout()
 
 plt.show()
 ```
+
+# Graph 3: Looking at Cumulative Player Load over the course of the season by positon, highlighting player H.
+
+This graph works to show how player load progressives over the season, with guards(especially Athlete H) dominating cumulative player load during the season.
+
+```{python}
+# No imports are needed as they are loaded above
+# Groups the data by date, about, and position, then it sums the total player load by each date and player
+
+gamesums1 = df1.groupby(['Date', 'About', 'Position'])['Total Player Load'].sum().reset_index()
+
+# Creates new DataFrame with desired columns
+PL_per_player_df1 = gamesums1[['Date', 'About', 'Position', 'Total Player Load']].copy()
+
+# Rename columns for clarity
+PL_per_player_df1.rename(columns={'About': 'Player'}, inplace=True)
+
+# Converts the date to represent datetime format
+PL_per_player_df1['Date'] = pd.to_datetime(PL_per_player_df1['Date'])
+
+# Sorts by date
+PL_per_player_df1.sort_values(by='Date', inplace=True)
+PL_per_player_df1.reset_index(drop=True, inplace=True)
+
+# Creating color assignments to differentiate each position
+colors = {
+    'Forward': '#232D4B',
+    'Guard': '#E57200',
+    'Center': '#024CAA'
+}
+# Setting a figure size for the graph
+plt.figure(figsize=(20, 8))
+
+#Loops through each unique player and appends their information to a new data set, in order of the game date, including the athlete letter, position, and cumulative sum
+for player in PL_per_player_df1['Player'].unique():
+  player_data1 = PL_per_player_df1[PL_per_player_df1['Player'] == player].copy()
+  player_data1.sort_values('Date', inplace = True)
+  player_data1['Cumulative Load'] = player_data1['Total Player Load'].cumsum()
+  position = player_data1['Position'].iloc[0]
+  color = colors.get(position, 'gray')
+  linewidth = 6 if player == 'Athlete H' else 2
+  sns.lineplot(x=player_data1['Date'], y=player_data1['Cumulative Load'], color = color, linewidth=linewidth)
+
+#Adding text to the graph, removing the x axis label for clearer results, adding the y axis label to the left upper corner
+plt.text(0.15, 1.1, 'Season 1 Cumulative Player Load for', fontsize=25, ha='left', va='center', transform=plt.gca().transAxes, color='#000000')
+plt.text(0.84, .82, 'Athlete H', fontsize=15, transform=plt.gca().transAxes, color='#E57200', rotation = 27)
+plt.text(0.493, 1.1, 'Guards,', fontsize=25, ha='left', va='center', transform=plt.gca().transAxes, color='#E57200')
+plt.text(0.57, 1.1, 'Forwards,', fontsize=25, ha='left', va='center', transform=plt.gca().transAxes, color='#232D4B')
+plt.text(0.663, 1.1, 'and', fontsize=25, ha='left', va='center', transform=plt.gca().transAxes, color='#000000')
+plt.text(0.7, 1.1, 'Centers', fontsize=25, ha='left', va='center', transform=plt.gca().transAxes, color='#024CAA')
+plt.text(-0.04, 1.04, 'Cumulative PL', fontsize=15, ha='left', va='center', transform=plt.gca().transAxes, color='#000000')
+plt.xlabel('')
+plt.ylabel('')
+
+#Adds major tick marks for each month
+plt.gca().xaxis.set_major_locator(mdates.MonthLocator())
+plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%b'))
+
+#Sets x and y tick labels to a certain font size
+plt.xticks(fontsize=15)
+plt.yticks(fontsize=15)
+
+#Removes the top and right spines 
+plt.gca().spines['top'].set_visible(False)
+plt.gca().spines['right'].set_visible(False)
+plt.tight_layout()
+plt.grid(False)
+plt.show()
+```
