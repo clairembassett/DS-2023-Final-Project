@@ -9,16 +9,13 @@ jupyter: python3
 # importing libraries
 import pandas as pd 
 
-# adding gitignore 
-# .gitignore
-
-# loading the data set
+# loading the dataset (not available on public Github repo)
 df1 = pd.read_csv("./season1.csv")
 df2 = pd.read_csv("./season2.csv")
 ``` 
 
 
-## Deleting unused columns
+## Deleting Unused Columns
 ```{python}
 df1 = df1[['Date', 'About', 'Position', 'Period', 'Total Player Load', 'Player Load Per Minute', 'IMA Accel Total', 
            'IMA Decel Total', 'IMA Jump Count Low Band', 'IMA Jump Count Med Band', 'IMA Jump Count High Band', 'Explosive Efforts']]
@@ -26,14 +23,14 @@ df1 = df1[['Date', 'About', 'Position', 'Period', 'Total Player Load', 'Player L
 df2 = df2[['Date', 'About', 'Position', 'Period', 'Total Player Load', 'Player Load Per Minute', 'IMA Accel Total', 
            'IMA Decel Total', 'IMA Jump Count Low Band', 'IMA Jump Count Med Band', 'IMA Jump Count High Band', 'Explosive Efforts']]
 
-# make sure columns dropped properly
+# make sure columns dropped properly by listing out columns to each season dataframe
 print("df1:", df1.columns)
 print("df2:", df2.columns)
 ```
 
 ## Check for Missing Data
 ```{python}
-# looking for missing values in the columns 
+# looking for missing values in the selected columns 
 # loop through each column and print the percentage of missing values of each column
 print("Season1 Missings:")
 for col in df1.columns:
@@ -52,13 +49,14 @@ for col in df2.columns:
 
 ## Check for Duplicated/Correct Data Types in df1
 ```{python}
+#Following 3 lines commented out due to having similar purpose as the last line - uncomment out if wish to duplicate the cleaning:
 # using .unique() to check for duplicates because of spaces/wrong data types/etc
 # print(df1['Date'].unique() , "\n", df1['Date'].dtype) # -> all objects, no duplicates
 # print(df1['About'].unique() , "\n", df1['About'].dtype) # -> all objects, no duplicates
 print(df1['Position'].unique() , "\n", df1['Position'].dtype) # -> all objects, no duplicates
 ```
 
-We see that there is one player whose name is not in the correct format of 'Athlete ..', so we will replace his name with 'Athlete K' per instructions.
+We see that there is one player whose name is not in the correct format of 'Athlete ..', so we will replace his name with 'Athlete K' per instructions. This is under the `About` column.
 
 ``` {python}
 df1['About'] = df1['About'].replace('Ben Vander Plas', 'Athlete K')
