@@ -5,3 +5,5 @@ eda_group.html
 .DS_Store
 season1.csv
 season2.csv
+./Quarto_render/season1.csv
+./Quarto_render/season2.csv
