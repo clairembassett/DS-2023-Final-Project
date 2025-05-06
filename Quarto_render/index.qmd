@@ -1,7 +1,8 @@
 ---
 title: "Report"
 author: Claire Bassett, Iliana Vasslides, Kayla Kim, Rebecca Vanni
-format: html
+number-depth: 2
+number-offset: 1
 ---
 
 ## Prepared For
@@ -16,20 +17,22 @@ Research suggests that guards are disproportionately affected by injuries, often
 
 ## Analysis
 To test the hypothesis that guards face the highest physical burden, we averaged the total Player Load for each position in Season 1. A pie chart visualized the distribution of Player Load across positions.
-GRAPHHHH 1 
+
+![Elephant](./graph_images/graph1.png)
 
 Guards accounted for approximately 45% of total Player Load. Which is about 10% more than forwards, and significantly more than centers. This high load remained consistent across different time periods in the season, suggesting that guards are consistently tasked with more physically demanding roles.
 
 
 Taking a deeper dive into guard performance, we decided we needed to look at Player Load. To better understand what drives high Player Load, we analyzed Player H—a guard who logged the highest Player Load across both seasons. Using a stacked area chart, we decomposed their Player Load into three components: total accelerations/deceleration, total jump counts and explosive efforts.To make these metrics comparable, we applied a log transformation and plotted them cumulatively.
-GRAPHHHH 2 
+
+![Elephant](./graph_images/graph2.png)
 
 The majority of Player H’s load came from explosive efforts and accelerations and decelerations. These actions are known to strain the knees and ankles. These types of efforts, common among guards, are directly tied to movements associated with non-contact basketball injuries.
 
 
 We then created a line graph comparing cumulative Player Load by position throughout the season. Player H’s line was bolded for emphasis. 
-GRAPHHH 3 
 
+![Elephant](./graph_images/graph3.png)
 
 Among the top four players with the highest cumulative loads, three were guards. This reinforces the pattern that guards consistently bear the heaviest physical load, not just in isolated games but throughout the entire season.
 

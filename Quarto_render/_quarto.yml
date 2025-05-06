@@ -27,6 +27,7 @@ book:
 
 format:
   html:
+    number-sections: true
     theme:
       light: minty
     code-fold: false
