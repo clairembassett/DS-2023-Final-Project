@@ -8,7 +8,7 @@ book:
   favicon: logo.png
   description: Our final project for DS 2023 Communicating with Data
   keyword: data science, communicating, storytelling, data visualization
-  url: https://github.com/clairembassett/DS-2023-Final-Project/tree/main
+  url: https://clairembassett.github.io/DS-2023-Final-Project/
   sidebar:
     logo: logo.png
     search: true
