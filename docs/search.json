@@ -2,7 +2,7 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "DS2023 Final Example",
+    "title": "DS 2023 Final Project",
     "section": "",
     "text": "1.1 Prepared For\nOur report was made for the UVA Men’s basketball recruiting team and their athletic trainers.",
     "crumbs": [
@@ -12,7 +12,7 @@
   {
     "objectID": "index.html#problem-statement",
     "href": "index.html#problem-statement",
-    "title": "DS2023 Final Example",
+    "title": "DS 2023 Final Project",
     "section": "1.2 Problem Statement",
     "text": "1.2 Problem Statement\nInjuries are a persistent challenge for basketball teams, particularly as the season progresses and physical demands intensify. Once a player is injured, they can no longer contribute to games or continue training. Which is disrupting to the team performance and the individual development of the player.\nOur report uses Catapult performance tracking data from the 2022–2023 season to evaluate how different positions contribute to Total Player Load, a key indicator of physical exertion. While Player Load does not directly measure injuries, it reflects the volume of movement and intensity. Both of these are linked to injury-prone actions like quick direction changes, sprints, and jumps.\nResearch suggests that guards are disproportionately affected by injuries, often due to their explosiveness and agility demands. Our analysis investigates the validity of this claim and offers insights for the UVA team on their recruitment and training plans.\nQuestion: How does a player’s position dictate their Player Load and therefore their likelihood of injury?",
     "crumbs": [
@@ -22,7 +22,7 @@
   {
     "objectID": "index.html#analysis",
     "href": "index.html#analysis",
-    "title": "DS2023 Final Example",
+    "title": "DS 2023 Final Project",
     "section": "1.3 Analysis",
     "text": "1.3 Analysis\nTo test the hypothesis that guards face the highest physical burden, we averaged the Total Player Load for each Position in Season 1. Two donut charts for 2 periods visualized the distribution of Total Player Load across positions.\n\n\n\nSource: Season 1 dataset, 2 donut charts\n\n\nGuards accounted for approximately 45% of Total Player Load. Which is about 10% more than forwards, and significantly more than centers. This high load remained consistent across different time periods in the season, suggesting that guards are consistently tasked with more physically demanding roles.\nTaking a deeper dive into guard performance, we decided we needed to look at Total Player Load’s nuances. To better understand what drives high Player Loads, we analyzed Player H— a guard who logged the highest Total Player Load across both seasons. Using a stacked area chart, we decomposed the athlete’s Total Player Load into three components: total accelerations/deceleration, total jump counts, and explosive actions. To make these metrics comparable, we took proportions of each of Total Player Load and plotted them cumulatively across game Dates during Season 1.\n\n\n\nSource: Season 1 dataset, stacked area graph with NON-overlapping areas\n\n\nThe majority of Player H’s load came from Total accelerations and decelerations, followed closely by explosive actions. These actions are known to strain the knees and ankles. These types of efforts, common among guards, are directly tied to movements associated with non-contact basketball injuries.\nWe then created a line graph comparing cumulative Total Player Load by Position throughout Season 1. Player H’s line was bolded for emphasis.\n\n\n\nSource: Season 1 dataset, (multiple) line graph\n\n\nAmong the top four players with the highest cumulative Total Player Loads, three were guards. This reinforces the pattern that guards consistently bear the heaviest physical load, not just in isolated games but throughout the entire season.",
     "crumbs": [
@@ -32,7 +32,7 @@
   {
     "objectID": "index.html#conclusion",
     "href": "index.html#conclusion",
-    "title": "DS2023 Final Example",
+    "title": "DS 2023 Final Project",
     "section": "1.4 Conclusion",
     "text": "1.4 Conclusion\nOur analysis confirms that guards carry a disproportionately higher Total Player Load relative to that of other positions, particularly through explosive actions and frequent jumping. Both of which are known contributors to common basketball injuries.\nThese insights have meaningful implications for recruitment, training, and injury prevention:\n\nRecruiting Takeaway: Consider durability and movement efficiency in guards as key scouting attributes. Also to recruit more guards instead of centers which are becoming less used in current basketball gameplay.\nTraining Recommendation: Implement injury prevention strategies targeting the lower body, especially for guards. Such as strength training, mobility work, and controlled agility drills.\nIn-Game Strategy: Monitor Player Load throughout the season to adjust minutes and reduce overexertion, particularly during periods of high game frequency.\n\nBy taking a data-driven approach to conditioning and game planning, UVA can better preserve player health and maintain performance consistency.",
     "crumbs": [
