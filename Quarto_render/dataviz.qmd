@@ -4,7 +4,7 @@ format: html
 jupyter: python3
 ---
 
-## Graph 1: Looking at the Percentages of Total Player Load separate by position, for each period
+## Graph 1: Looking at the percentages of `Total Player Load` separate by `Position`, for each `Period`
 
 ```{python}
 # Importing libraries
@@ -33,7 +33,7 @@ print(p2_avg)
 ``` 
 
 
-Now3 that we have the averages, we will divide each position's `Total Player Load` by the sum of all positions' `Total Player Load` to get the percentage. This percentage will be stored in a new column, `Proportion`. 
+Now that we have the averages, we will divide each position's `Total Player Load` by the sum of all positions, `Total Player Load`, to get the percentage. This percentage will be stored in a new column, `Proportion`. 
 ```{python}
 # Add a new column, Proportion, for each position's TPL for each period 
 p1_avg['Proportion'] = p1_avg['Total Player Load'] / p1_avg['Total Player Load'].sum()
@@ -44,7 +44,7 @@ print(p1_avg, "\n")
 print(p2_avg)
 ``` 
 
-To plot our donut charts, we will use the `plot.pie` method. Using subplots, we can create two donut charts side by side to demonstrate the percentages of `Total Player Load` for each position in each period. 
+To plot our donut charts, we will use the `plot.pie` method. Using subplots, we can create two donut charts side by side to demonstrate the percentages of `Total Player Load` for each `Period` in each `Period`. 
 ```{python}
 # Make color dict for positions
 colors = {'Guard': '#E57200', 'Forward': '#232D4B', 'Center': '#C8CBD2'}
@@ -75,8 +75,8 @@ plt.tight_layout()
 plt.show()
 ```
 
-## Graph 2: Looking at different Contributors to Player Load for a specific athlete.
-In this STACKED AREA GRAPH, `Explosive efforts`, `IMA Accel/Decel`, and `IMA Jump Band` (Med, High, Low) were observed as contributors to `Total Player Load`. The data will be filtered for that of Athlete H in column `About`. Here, the 
+## Graph 2: Looking at different contributors to `Total Player Load` for a chosen athlete.
+In this STACKED area graph, `Explosive efforts`, `IMA Accel/Decel`, and `IMA Jump Band` (Med, High, Low) were observed as contributors to `Total Player Load`. The data will be filtered for that of Athlete H in column `About`.
 
 ```{python}
 # Importing libraries for graph 2
@@ -85,7 +85,7 @@ import matplotlib.dates as mdates
 from matplotlib.patches import Patch
 ```
 
-There must be setup in logistics like turning `Date` string from the dataset into a datetime structure and filtering the data just for that of Athlete H:
+There must be setup in logistics like turning `Date` string from the dataset into a datetime structure and filtering the data just for that of Athlete H from column `About`:
 ```{python}
 # Obtain `Date` from df1 and turn into datetime object through pandas
 df1['Date'] = pd.to_datetime(df1['Date'], format='%m/%d/%y')
@@ -93,21 +93,21 @@ df1['Date'] = pd.to_datetime(df1['Date'], format='%m/%d/%y')
 # Not wanting to work straight on df1, I will create a copy of df1 to manipulate for this graph:
 df1_copy = df1.copy()
 
-# sort for just Athlete H (athlete in Season 1 with highest incline in player load)
+# sort for just Athlete H (athlete in Season 1 with highest incline in `Total Player Load)
 df1_copy = df1_copy[df1_copy['About'] == 'Athlete H']
 ```
 
-The three variables that will be looked at are the ones in the season1 dataset that relate to total player load. For this purpose, 3 variables will be chosen/combined in a meaningful way for the graph. Here they are:
+The three variables that will be looked at are the ones in the Season 1 dataset that relate to `Total Player Load`. For this purpose, 3 variables will be chosen/combined in a meaningful way for the graph. Here they are:
 
 1. **`IATS_IDTS_pct`** = `IMA Accel Total` and `IMA Decel Total` averaged
 2. **`Jumps_pct`** = `IMA Jump Count Low Band`, `IMA Jump Count Med Band`, `IMA Jump Count High Band` averaged
 3. **`EES_pct`** =`Explosive Efforts`
 
-To find the proportions, all 3 main variables will be divided by the `Total Player Load` at the matching dates.
+To find the proportions, all 3 main variables will be divided by the `Total Player Load` at the matching `Date`s.
 
-The next code block will find the proportion that each value takes of total player load.
+The next code block will find the proportion that each value takes of `Total Player Load`.
 ```{python}
-# Avg_IATS_IDTS_By_Date is the average of the IMA Accel/Decel total. Having both independently on the graph causes busy-ness
+# `Avg_IATS_IDTS_By_Date` is the average of the `IMA Accel/Decel` total. Having both independently on the graph causes busy-ness
 # They're similar in correlation to total player load (found through EDA)
 df1_copy['Avg_IATS_IDTS_By_Date'] = (
     df1_copy['IMA Accel Total'] + 
@@ -115,8 +115,8 @@ df1_copy['Avg_IATS_IDTS_By_Date'] = (
     ) / 2
 df1_copy['IATS_IDTS_pct'] = df1_copy['Avg_IATS_IDTS_By_Date'] / df1_copy['Total Player Load']
 
-# Avg_ijclb_ijcmb_ijchb_By_Date is the average of the IMA jump bands from low, medium, and high. Having all independently on the graph causes busy-ness
-# They're similar in correlation to total player load (found through EDA)
+# `Avg_ijclb_ijcmb_ijchb_By_Date` is the average of the `IMA jump bands` from low, medium, and high. Having all independently on the graph causes busy-ness
+# They're similar in correlation to `Total Player Load` (found through EDA)
 df1_copy['Avg_ijclb_ijcmb_ijchb_By_Date'] = (
     df1_copy['IMA Jump Count Low Band'] +
     df1_copy['IMA Jump Count Med Band'] +
@@ -124,7 +124,7 @@ df1_copy['Avg_ijclb_ijcmb_ijchb_By_Date'] = (
     ) / 3
 df1_copy['Jumps_pct'] = df1_copy['Avg_ijclb_ijcmb_ijchb_By_Date'] / df1_copy['Total Player Load']
 
-# Explosive Efforts can remain independent since there's only one "version"
+# `Explosive Efforts` can remain independent since there's only one "version"
 df1_copy['EES_pct'] = df1_copy['Explosive Efforts'] / df1_copy['Total Player Load']
 ```
 
@@ -175,9 +175,9 @@ plt.tick_params(axis='y', length=0)
 ########################################################################################################################################################################
 # This next section is optional. Currently, none of the code contributes to the current graph due to the current graph not using a legend. Instead, we put the variables by color in the title. You may uncomment the legend block below to use, however.
 handles = [  # Matches colors as they are shown top-bottom in the graph itself into the legend's top-down order
-    Patch(facecolor='#D3D3D3'),  # Top layer in graph (Jumps)
-    Patch(facecolor='#E57200'),  # Middle layer (EES)
-    Patch(facecolor='#232D4B'),  # Bottom layer (IATS_IDTS)
+    Patch(facecolor='#D3D3D3'),  # Top layer in graph (`Jumps`)
+    Patch(facecolor='#E57200'),  # Middle layer (`EES`)
+    Patch(facecolor='#232D4B'),  # Bottom layer (`IATS_IDTS`)
 ]
 # Labels for the variables in the legend (see below legend code comments for what things to do with the legend and this list)
 labels = [
@@ -222,8 +222,8 @@ plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval=1))
 plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%b %d'))
 plt.gca().xaxis.set_major_locator(mdates.AutoDateLocator())
 
-# don't want floating dates before or after the first game date or last game date. 
-# Just limit to what is the first and last game date (Nov 7 to Mar 14, but don't list these)
+# don't want floating dates before or after the first game date or last game `Date`. 
+# Just limit to what is the first and last game `Date` (Nov 7 to Mar 14, but don't list these)
 plt.xlim(avg_df['Date'].min(), avg_df['Date'].max())
 
 # Finally: Show the whole graph!
@@ -233,11 +233,11 @@ plt.show()
 
 ## Graph 3: Looking at Cumulative Player Load over the course of the season by positon, highlighting player H.
 
-This graph works to show how player load progressives over the season, with guards(especially Athlete H) dominating cumulative player load during the season.
+This graph works to show how `Total Player Load` progressives over the season, with guards (especially Athlete H) dominating cumulative `Total Player Load` during the season.
 
 ```{python}
 # No imports are needed as they are loaded above
-# Groups the data by date, about, and position, then it sums the total player load by each date and player
+# Groups the data by date, about, and position, then it sums the `Total Player Load` by each date and athlete in `About`
 
 gamesums1 = df1.groupby(['Date', 'About', 'Position'])['Total Player Load'].sum().reset_index()
 
@@ -250,11 +250,11 @@ PL_per_player_df1.rename(columns={'About': 'Player'}, inplace=True)
 # Converts the date to represent datetime format
 PL_per_player_df1['Date'] = pd.to_datetime(PL_per_player_df1['Date'])
 
-# Sorts by date
+# Sorts by `Date`
 PL_per_player_df1.sort_values(by='Date', inplace=True)
 PL_per_player_df1.reset_index(drop=True, inplace=True)
 
-# Creating color assignments to differentiate each position
+# Creating color assignments to differentiate each `Position`
 colors = {
     'Forward': '#232D4B',
     'Guard': '#E57200',
@@ -263,7 +263,7 @@ colors = {
 # Setting a figure size for the graph
 plt.figure(figsize=(20, 8))
 
-#Loops through each unique player and appends their information to a new data set, in order of the game date, including the athlete letter, position, and cumulative sum
+# Loops through each unique player and appends their information to a new data set, in order of the game `Date`, including the athlete letter from `About`, `Position`, and cumulative sum of `Total Player Load`
 for player in PL_per_player_df1['Player'].unique():
   player_data1 = PL_per_player_df1[PL_per_player_df1['Player'] == player].copy()
   player_data1.sort_values('Date', inplace = True)

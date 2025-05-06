@@ -187,8 +187,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#graph-1-looking-at-the-percentages-of-total-player-load-separate-by-position-for-each-period" id="toc-graph-1-looking-at-the-percentages-of-total-player-load-separate-by-position-for-each-period" class="nav-link active" data-scroll-target="#graph-1-looking-at-the-percentages-of-total-player-load-separate-by-position-for-each-period"><span class="header-section-number">4.1</span> Graph 1: Looking at the Percentages of Total Player Load separate by position, for each period</a></li>
-  <li><a href="#graph-2-looking-at-different-contributors-to-player-load-for-a-specific-athlete." id="toc-graph-2-looking-at-different-contributors-to-player-load-for-a-specific-athlete." class="nav-link" data-scroll-target="#graph-2-looking-at-different-contributors-to-player-load-for-a-specific-athlete."><span class="header-section-number">4.2</span> Graph 2: Looking at different Contributors to Player Load for a specific athlete.</a></li>
+  <li><a href="#graph-1-looking-at-the-percentages-of-total-player-load-separate-by-position-for-each-period" id="toc-graph-1-looking-at-the-percentages-of-total-player-load-separate-by-position-for-each-period" class="nav-link active" data-scroll-target="#graph-1-looking-at-the-percentages-of-total-player-load-separate-by-position-for-each-period"><span class="header-section-number">4.1</span> Graph 1: Looking at the percentages of <code>Total Player Load</code> separate by <code>Position</code>, for each <code>Period</code></a></li>
+  <li><a href="#graph-2-looking-at-different-contributors-to-total-player-load-for-a-chosen-athlete." id="toc-graph-2-looking-at-different-contributors-to-total-player-load-for-a-chosen-athlete." class="nav-link" data-scroll-target="#graph-2-looking-at-different-contributors-to-total-player-load-for-a-chosen-athlete."><span class="header-section-number">4.2</span> Graph 2: Looking at different contributors to <code>Total Player Load</code> for a chosen athlete.</a></li>
   <li><a href="#graph-3-looking-at-cumulative-player-load-over-the-course-of-the-season-by-positon-highlighting-player-h." id="toc-graph-3-looking-at-cumulative-player-load-over-the-course-of-the-season-by-positon-highlighting-player-h." class="nav-link" data-scroll-target="#graph-3-looking-at-cumulative-player-load-over-the-course-of-the-season-by-positon-highlighting-player-h."><span class="header-section-number">4.3</span> Graph 3: Looking at Cumulative Player Load over the course of the season by positon, highlighting player H.</a></li>
   </ul>
 </nav>
@@ -216,8 +216,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <section id="graph-1-looking-at-the-percentages-of-total-player-load-separate-by-position-for-each-period" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="graph-1-looking-at-the-percentages-of-total-player-load-separate-by-position-for-each-period"><span class="header-section-number">4.1</span> Graph 1: Looking at the Percentages of Total Player Load separate by position, for each period</h2>
-<div id="0c3e4c1d" class="cell" data-execution_count="1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="graph-1-looking-at-the-percentages-of-total-player-load-separate-by-position-for-each-period"><span class="header-section-number">4.1</span> Graph 1: Looking at the percentages of <code>Total Player Load</code> separate by <code>Position</code>, for each <code>Period</code></h2>
+<div id="cabcd55c" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importing libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -227,7 +227,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> pd.read_csv(<span class="st">"./season1_cleaned.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To get the data ready for our pie charts, we need to separate the one dataframe by <code>Period</code> to make new two dataframes: p1 and p2. For the two new dataframes, we wil use the <code>groupby</code> method to group the data by <code>Position</code> and then find the average of the <code>Total Player Load</code> for each position.</p>
-<div id="b8232c90" class="cell" data-execution_count="2">
+<div id="a0836505" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Separate df1 into dataframes for period 1 and for period 2</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="op">=</span> df1[df1[<span class="st">'Period'</span>] <span class="op">==</span> <span class="st">'Period 1'</span>].copy().reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>p2 <span class="op">=</span> df1[df1[<span class="st">'Period'</span>] <span class="op">==</span> <span class="st">'Period 2'</span>].copy().reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
@@ -252,8 +252,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 2    Guard         278.306542</code></pre>
 </div>
 </div>
-<p>Now3 that we have the averages, we will divide each position’s <code>Total Player Load</code> by the sum of all positions’ <code>Total Player Load</code> to get the percentage. This percentage will be stored in a new column, <code>Proportion</code>.</p>
-<div id="acd170bb" class="cell" data-execution_count="3">
+<p>Now that we have the averages, we will divide each position’s <code>Total Player Load</code> by the sum of all positions, <code>Total Player Load</code>, to get the percentage. This percentage will be stored in a new column, <code>Proportion</code>.</p>
+<div id="5072964e" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a new column, Proportion, for each position's TPL for each period </span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>p1_avg[<span class="st">'Proportion'</span>] <span class="op">=</span> p1_avg[<span class="st">'Total Player Load'</span>] <span class="op">/</span> p1_avg[<span class="st">'Total Player Load'</span>].<span class="bu">sum</span>()</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>p2_avg[<span class="st">'Proportion'</span>] <span class="op">=</span> p2_avg[<span class="st">'Total Player Load'</span>] <span class="op">/</span> p2_avg[<span class="st">'Total Player Load'</span>].<span class="bu">sum</span>()</span>
@@ -273,8 +273,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 2    Guard         278.306542    0.460241</code></pre>
 </div>
 </div>
-<p>To plot our donut charts, we will use the <code>plot.pie</code> method. Using subplots, we can create two donut charts side by side to demonstrate the percentages of <code>Total Player Load</code> for each position in each period.</p>
-<div id="63b8480f" class="cell" data-execution_count="4">
+<p>To plot our donut charts, we will use the <code>plot.pie</code> method. Using subplots, we can create two donut charts side by side to demonstrate the percentages of <code>Total Player Load</code> for each <code>Period</code> in each <code>Period</code>.</p>
+<div id="cc95418b" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make color dict for positions</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> {<span class="st">'Guard'</span>: <span class="st">'#E57200'</span>, <span class="st">'Forward'</span>: <span class="st">'#232D4B'</span>, <span class="st">'Center'</span>: <span class="st">'#C8CBD2'</span>}</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -311,36 +311,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="graph-2-looking-at-different-contributors-to-player-load-for-a-specific-athlete." class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="graph-2-looking-at-different-contributors-to-player-load-for-a-specific-athlete."><span class="header-section-number">4.2</span> Graph 2: Looking at different Contributors to Player Load for a specific athlete.</h2>
-<p>In this STACKED AREA GRAPH, <code>Explosive efforts</code>, <code>IMA Accel/Decel</code>, and <code>IMA Jump Band</code> (Med, High, Low) were observed as contributors to <code>Total Player Load</code>. The data will be filtered for that of Athlete H in column <code>About</code>. Here, the</p>
-<div id="677294f0" class="cell" data-execution_count="5">
+<section id="graph-2-looking-at-different-contributors-to-total-player-load-for-a-chosen-athlete." class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="graph-2-looking-at-different-contributors-to-total-player-load-for-a-chosen-athlete."><span class="header-section-number">4.2</span> Graph 2: Looking at different contributors to <code>Total Player Load</code> for a chosen athlete.</h2>
+<p>In this STACKED area graph, <code>Explosive efforts</code>, <code>IMA Accel/Decel</code>, and <code>IMA Jump Band</code> (Med, High, Low) were observed as contributors to <code>Total Player Load</code>. The data will be filtered for that of Athlete H in column <code>About</code>.</p>
+<div id="49eea9aa" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importing libraries for graph 2</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.dates <span class="im">as</span> mdates</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> Patch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>There must be setup in logistics like turning <code>Date</code> string from the dataset into a datetime structure and filtering the data just for that of Athlete H:</p>
-<div id="aedb9906" class="cell" data-execution_count="6">
+<p>There must be setup in logistics like turning <code>Date</code> string from the dataset into a datetime structure and filtering the data just for that of Athlete H from column <code>About</code>:</p>
+<div id="e76828b6" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain `Date` from df1 and turn into datetime object through pandas</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df1[<span class="st">'Date'</span>] <span class="op">=</span> pd.to_datetime(df1[<span class="st">'Date'</span>], <span class="bu">format</span><span class="op">=</span><span class="st">'%m/</span><span class="sc">%d</span><span class="st">/%y'</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Not wanting to work straight on df1, I will create a copy of df1 to manipulate for this graph:</span></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>df1_copy <span class="op">=</span> df1.copy()</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># sort for just Athlete H (athlete in Season 1 with highest incline in player load)</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># sort for just Athlete H (athlete in Season 1 with highest incline in `Total Player Load)</span></span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>df1_copy <span class="op">=</span> df1_copy[df1_copy[<span class="st">'About'</span>] <span class="op">==</span> <span class="st">'Athlete H'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The three variables that will be looked at are the ones in the season1 dataset that relate to total player load. For this purpose, 3 variables will be chosen/combined in a meaningful way for the graph. Here they are:</p>
+<p>The three variables that will be looked at are the ones in the Season 1 dataset that relate to <code>Total Player Load</code>. For this purpose, 3 variables will be chosen/combined in a meaningful way for the graph. Here they are:</p>
 <ol type="1">
 <li><strong><code>IATS_IDTS_pct</code></strong> = <code>IMA Accel Total</code> and <code>IMA Decel Total</code> averaged</li>
 <li><strong><code>Jumps_pct</code></strong> = <code>IMA Jump Count Low Band</code>, <code>IMA Jump Count Med Band</code>, <code>IMA Jump Count High Band</code> averaged</li>
 <li><strong><code>EES_pct</code></strong> =<code>Explosive Efforts</code></li>
 </ol>
-<p>To find the proportions, all 3 main variables will be divided by the <code>Total Player Load</code> at the matching dates.</p>
-<p>The next code block will find the proportion that each value takes of total player load.</p>
-<div id="6d2d6d1c" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Avg_IATS_IDTS_By_Date is the average of the IMA Accel/Decel total. Having both independently on the graph causes busy-ness</span></span>
+<p>To find the proportions, all 3 main variables will be divided by the <code>Total Player Load</code> at the matching <code>Date</code>s.</p>
+<p>The next code block will find the proportion that each value takes of <code>Total Player Load</code>.</p>
+<div id="6917c120" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># `Avg_IATS_IDTS_By_Date` is the average of the `IMA Accel/Decel` total. Having both independently on the graph causes busy-ness</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># They're similar in correlation to total player load (found through EDA)</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>df1_copy[<span class="st">'Avg_IATS_IDTS_By_Date'</span>] <span class="op">=</span> (</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    df1_copy[<span class="st">'IMA Accel Total'</span>] <span class="op">+</span> </span>
@@ -348,8 +348,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">/</span> <span class="dv">2</span></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>df1_copy[<span class="st">'IATS_IDTS_pct'</span>] <span class="op">=</span> df1_copy[<span class="st">'Avg_IATS_IDTS_By_Date'</span>] <span class="op">/</span> df1_copy[<span class="st">'Total Player Load'</span>]</span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Avg_ijclb_ijcmb_ijchb_By_Date is the average of the IMA jump bands from low, medium, and high. Having all independently on the graph causes busy-ness</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># They're similar in correlation to total player load (found through EDA)</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># `Avg_ijclb_ijcmb_ijchb_By_Date` is the average of the `IMA jump bands` from low, medium, and high. Having all independently on the graph causes busy-ness</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># They're similar in correlation to `Total Player Load` (found through EDA)</span></span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>df1_copy[<span class="st">'Avg_ijclb_ijcmb_ijchb_By_Date'</span>] <span class="op">=</span> (</span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    df1_copy[<span class="st">'IMA Jump Count Low Band'</span>] <span class="op">+</span></span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    df1_copy[<span class="st">'IMA Jump Count Med Band'</span>] <span class="op">+</span></span>
@@ -357,11 +357,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">/</span> <span class="dv">3</span></span>
 <span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>df1_copy[<span class="st">'Jumps_pct'</span>] <span class="op">=</span> df1_copy[<span class="st">'Avg_ijclb_ijcmb_ijchb_By_Date'</span>] <span class="op">/</span> df1_copy[<span class="st">'Total Player Load'</span>]</span>
 <span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Explosive Efforts can remain independent since there's only one "version"</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co"># `Explosive Efforts` can remain independent since there's only one "version"</span></span>
 <span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>df1_copy[<span class="st">'EES_pct'</span>] <span class="op">=</span> df1_copy[<span class="st">'Explosive Efforts'</span>] <span class="op">/</span> df1_copy[<span class="st">'Total Player Load'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The code will group the 3 new columns by the <code>Date</code> they were recorded and averaged for graphical purposes. In addition, colors will be mapped to each column along with sorting the game dates in order for visual clarity purposes.</p>
-<div id="fd844521" class="cell" data-execution_count="8">
+<div id="79ae8c0f" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Take the mean of the `IATS_IDTS_pct`, `EES`, and `Jumps_pct` according to the specific game date</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>avg_df <span class="op">=</span> df1_copy.groupby(<span class="st">'Date'</span>)[[ <span class="st">'IATS_IDTS_pct'</span>, <span class="st">'EES_pct'</span>, <span class="st">'Jumps_pct'</span>]].mean().reset_index()</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>avg_df.columns <span class="op">=</span> [<span class="st">'Date'</span>,  <span class="st">'IATS_IDTS'</span>, <span class="st">'EES'</span>, <span class="st">'Jumps'</span>]</span>
@@ -377,7 +377,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>avg_df <span class="op">=</span> avg_df.sort_values(<span class="st">'Date'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The actual plot: This next part creates a STACKED AREA GRAPH of all 3 variables, starting with <code>IATS_IDTS</code>, followed by <code>EES</code> and <code>Jumps</code>. Coincidentally, this is the order highest to lowest of which variable “contributes” to the <code>Total Player Load</code>.</p>
-<div id="e2c51d42" class="cell" data-execution_count="9">
+<div id="ec417d33" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating "wide" graph to account for many dates across the season</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -406,9 +406,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="co">########################################################################################################################################################################</span></span>
 <span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="co"># This next section is optional. Currently, none of the code contributes to the current graph due to the current graph not using a legend. Instead, we put the variables by color in the title. You may uncomment the legend block below to use, however.</span></span>
 <span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>handles <span class="op">=</span> [  <span class="co"># Matches colors as they are shown top-bottom in the graph itself into the legend's top-down order</span></span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    Patch(facecolor<span class="op">=</span><span class="st">'#D3D3D3'</span>),  <span class="co"># Top layer in graph (Jumps)</span></span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    Patch(facecolor<span class="op">=</span><span class="st">'#E57200'</span>),  <span class="co"># Middle layer (EES)</span></span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    Patch(facecolor<span class="op">=</span><span class="st">'#232D4B'</span>),  <span class="co"># Bottom layer (IATS_IDTS)</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    Patch(facecolor<span class="op">=</span><span class="st">'#D3D3D3'</span>),  <span class="co"># Top layer in graph (`Jumps`)</span></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    Patch(facecolor<span class="op">=</span><span class="st">'#E57200'</span>),  <span class="co"># Middle layer (`EES`)</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    Patch(facecolor<span class="op">=</span><span class="st">'#232D4B'</span>),  <span class="co"># Bottom layer (`IATS_IDTS`)</span></span>
 <span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>]</span>
 <span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Labels for the variables in the legend (see below legend code comments for what things to do with the legend and this list)</span></span>
 <span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [</span>
@@ -453,8 +453,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a>plt.gca().xaxis.set_major_formatter(mdates.DateFormatter(<span class="st">'%b </span><span class="sc">%d</span><span class="st">'</span>))</span>
 <span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a>plt.gca().xaxis.set_major_locator(mdates.AutoDateLocator())</span>
 <span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a><span class="co"># don't want floating dates before or after the first game date or last game date. </span></span>
-<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a><span class="co"># Just limit to what is the first and last game date (Nov 7 to Mar 14, but don't list these)</span></span>
+<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a><span class="co"># don't want floating dates before or after the first game date or last game `Date`. </span></span>
+<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a><span class="co"># Just limit to what is the first and last game `Date` (Nov 7 to Mar 14, but don't list these)</span></span>
 <span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a>plt.xlim(avg_df[<span class="st">'Date'</span>].<span class="bu">min</span>(), avg_df[<span class="st">'Date'</span>].<span class="bu">max</span>())</span>
 <span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a><span class="co"># Finally: Show the whole graph!</span></span>
@@ -471,10 +471,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="graph-3-looking-at-cumulative-player-load-over-the-course-of-the-season-by-positon-highlighting-player-h." class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="graph-3-looking-at-cumulative-player-load-over-the-course-of-the-season-by-positon-highlighting-player-h."><span class="header-section-number">4.3</span> Graph 3: Looking at Cumulative Player Load over the course of the season by positon, highlighting player H.</h2>
-<p>This graph works to show how player load progressives over the season, with guards(especially Athlete H) dominating cumulative player load during the season.</p>
-<div id="798a00e5" class="cell" data-execution_count="10">
+<p>This graph works to show how <code>Total Player Load</code> progressives over the season, with guards (especially Athlete H) dominating cumulative <code>Total Player Load</code> during the season.</p>
+<div id="6ed0e6ee" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># No imports are needed as they are loaded above</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Groups the data by date, about, and position, then it sums the total player load by each date and player</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Groups the data by date, about, and position, then it sums the `Total Player Load` by each date and athlete in `About`</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>gamesums1 <span class="op">=</span> df1.groupby([<span class="st">'Date'</span>, <span class="st">'About'</span>, <span class="st">'Position'</span>])[<span class="st">'Total Player Load'</span>].<span class="bu">sum</span>().reset_index()</span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
@@ -487,11 +487,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Converts the date to represent datetime format</span></span>
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>PL_per_player_df1[<span class="st">'Date'</span>] <span class="op">=</span> pd.to_datetime(PL_per_player_df1[<span class="st">'Date'</span>])</span>
 <span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Sorts by date</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Sorts by `Date`</span></span>
 <span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>PL_per_player_df1.sort_values(by<span class="op">=</span><span class="st">'Date'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>PL_per_player_df1.reset_index(drop<span class="op">=</span><span class="va">True</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating color assignments to differentiate each position</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating color assignments to differentiate each `Position`</span></span>
 <span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> {</span>
 <span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Forward'</span>: <span class="st">'#232D4B'</span>,</span>
 <span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Guard'</span>: <span class="st">'#E57200'</span>,</span>
@@ -500,7 +500,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting a figure size for the graph</span></span>
 <span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">20</span>, <span class="dv">8</span>))</span>
 <span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="co">#Loops through each unique player and appends their information to a new data set, in order of the game date, including the athlete letter, position, and cumulative sum</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Loops through each unique player and appends their information to a new data set, in order of the game `Date`, including the athlete letter from `About`, `Position`, and cumulative sum of `Total Player Load`</span></span>
 <span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> player <span class="kw">in</span> PL_per_player_df1[<span class="st">'Player'</span>].unique():</span>
 <span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>  player_data1 <span class="op">=</span> PL_per_player_df1[PL_per_player_df1[<span class="st">'Player'</span>] <span class="op">==</span> player].copy()</span>
 <span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  player_data1.sort_values(<span class="st">'Date'</span>, inplace <span class="op">=</span> <span class="va">True</span>)</span>
