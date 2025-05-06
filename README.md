@@ -12,3 +12,7 @@ As we progressed through exploratory data analysis, we learned the importance of
 ## Relevance: How is this pertinent to us as Data Scientists
 
 This project gave our group valuable hands-on experience working with a large, complex dataset. One of the biggest challenges was identifying a compelling story that would resonate with our audience and have a measurable impact on team performance. Through trial and error, we explored relationships between variables, often discovering unexpected connections or a lack thereof. Beyond data analysis, this project strengthened our ability to collaborate effectively. By balancing diverse ideas and perspectives, we built a cohesive and dynamic narrative. As future Data Scientists, we will be expected to work collaboratively and build impactful stories on the data at hand. This experience has given us the tools to do just that.
+
+## Repository Notes:
+
+If you choose to clone this repository, render within the "Quarto-Render" directory. The directory ./docs has been moved to the main directory of the repository for Github Pages' purposes. 
