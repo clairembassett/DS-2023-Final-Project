@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 book:
-  title: 'Position To Player Load'
+  title: 'DS2023 Final Example'
   author: 'Rebecca V. , Claire B. , Kayla K. , Iliana V.'
   favicon: new_logo.png
   description: Our final project for DS 2023 Communicating with Data
