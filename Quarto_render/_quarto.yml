@@ -5,16 +5,16 @@ project:
 book:
   title: 'Position To Player Load'
   author: 'Rebecca V. , Claire B. , Kayla K. , Iliana V.'
-  favicon: logo.png
+  favicon: new_logo.png
   description: Our final project for DS 2023 Communicating with Data
   keyword: data science, communicating, storytelling, data visualization
   url: https://clairembassett.github.io/DS-2023-Final-Project/
   sidebar:
-    logo: logo.png
+    logo: new_logo.png
     search: true
   repo-url: https://github.com/clairembassett/DS-2023-Final-Project/tree/main
   repo-branch: master
-  image: logo.png
+  image: new_logo.png
 
 
   chapters: 
